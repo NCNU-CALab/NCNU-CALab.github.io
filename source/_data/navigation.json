@@ -7,7 +7,29 @@
 	"main": [
 		{
 			"text": "C 程式語言教學",
-			"type": "label"
+			"type": "label",
+			"children": [
+				{
+					"text": "程式寫作概論",
+					"type": "link",
+					"path": "c/writing-intro.html"
+				},
+				{
+					"text": "電腦系統概論",
+					"type": "link",
+					"path": "c/system-intro.html"
+				},
+				{
+					"text": "電腦內部運作",
+					"type": "link",
+					"path": "c/system-operation.html"
+				},
+				{
+					"text": "C 語言的總覽",
+					"type": "link",
+					"path": "c/c-intro.html"
+				}
+			]
 		},
 		{
 			"text": "Java 程式語言教學",
