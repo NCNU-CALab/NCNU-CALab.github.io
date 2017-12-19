@@ -1,7 +1,7 @@
 ---
 title: 陣列
 ---
-# C 語言陣列回顧
+## C 語言陣列回顧
 
 C 語言以連續的記憶體空間來表達陣列，多維陣列的地址運算採用 row major 的方式。這種做法的好處是索引運算速度快，甚至能用 pointer 來逐一檢視其內容。但這種實作方法在傳遞陣列參數時, 就有一些問題產生了
 
@@ -40,7 +40,7 @@ int main() {
 
 另一種方法是規範該陣列必須以某個特殊的數值當作結尾，函數必須自行檢查該數值，以確保程式正確。C 語言的字串就是利用以 `0` 結尾的陣列來表達。
 
-# Java 陣列的特性
+## Java 陣列的特性
 
 Java 的陣列並不以一塊連續的記憶體空間來表達，而是把陣列視為特殊的物件。此物件不但可存放資料，還利用 object variable length 記錄著該陣列的長度。
 
@@ -89,7 +89,7 @@ public class Arrays {
 }
 ```
 
-# 多維陣列
+## 多維陣列
 
 Java 陣列物件是只能儲存基本資料型態或 reference 的一維陣列，二維以上的陣列是透過 reference 指到其他的一維陣列物件來達成。
 
@@ -135,7 +135,7 @@ public class ArrayExample3 {
 - 陣列的長度可以為 0
 - 由於以一維陣列來模擬二維陣列，因此透過第一個陣列的 reference 所找到的陣列，其長度不必然相同
 
-# 陣列索引的檢查
+## 陣列索引的檢查
 
 C 語言不會對陣列的索引進行任何檢查，保證索引值在陣列的合法範圍內，是設計者的責任。像是下列的範例就很可能產生 Segmentation Fault。
 
@@ -179,9 +179,9 @@ Exception in thread "main"
 
 當然這樣的便利性是用效能換來的。如果你的應用需要大量存取陣列，而且速度非常重要，連幾個 machine cycle 都要計較, 那才要考慮不用 Java 了。
 
-# 陣列範例
+## 陣列範例
 
-## 費氏數
+### 費氏數
 
 ```java
 public class Fab {
@@ -206,7 +206,7 @@ public class Fab {
 }
 ```
 
-## Selection sort
+### Selection sort
 
 ```java
 public class SelectionSort {
@@ -235,7 +235,7 @@ public class SelectionSort {
 }
 ```
 
-## Insertion Sort
+### Insertion Sort
 
 ```java
 public class InsertionSort {
@@ -262,7 +262,7 @@ public class InsertionSort {
 }
 ```
 
-## Pascal Triangle
+### Pascal Triangle
 
 下圖為 `n = 6` 的情況
 
@@ -325,7 +325,7 @@ public class Pascal {
 }
 ```
 
-## 列出整數陣列所有 n 個數字的排列
+### 列出整數陣列所有 n 個數字的排列
 
 ```java
 public class Example {
@@ -363,7 +363,7 @@ public class Example {
 }
 ```
 
-## 列出整數陣列所有 n 個數字的組合
+### 列出整數陣列所有 n 個數字的組合
 
 ```java
 public class Example {
@@ -401,7 +401,7 @@ public class Example {
 }
 ```
 
-## 反轉陣列
+### 反轉陣列
 
 ```java
 public class Example {
@@ -423,7 +423,7 @@ public class Example {
 }
 ```
 
-## Using array to implement Stack
+### Using array to implement Stack
 
 ```java
 public class Stack {

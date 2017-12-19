@@ -145,7 +145,7 @@ try {
 
 這是因為 `FileNotFoundException` 是 Exception 的子類別，因此如果產生的例外是 `instanceof Exception`，則 `FileNotFoundException` 就不會執行了；若產生的例外不是 `instanceof Exception`，那就更不會執行到 `FileNotFoundException` 區塊了。
 
-## 是否所有的 Exception 都要處理？
+### 是否所有的 Exception 都要處理？
 
 原則上是的。
 
@@ -168,14 +168,14 @@ exception 產生時，JVM 會由堆疊追蹤此錯誤點的呼叫資訊，並一
 
 在上述的例子中，沒有任何 `try {} catch()` 的宣告，則 JVM 會終止該[執行緒](thread.md)。
 
-## 類別 Exception 的相關方法
+### 類別 Exception 的相關方法
 
 抓到例外後，可透過該例外物件，得到有趣的資訊
 * `toString()`：以簡單的字串描述該例外
 * `getMessage()`：列出細節訊息
 * `printStackTrace()`：將堆疊資訊印在螢幕上，可幫助設計者快速找到錯誤點
 
-## Error
+### Error
 
 前面提到 Exception 是 Throwable 的子類別。
 
@@ -187,7 +187,7 @@ exception 產生時，JVM 會由堆疊追蹤此錯誤點的呼叫資訊，並一
 
 ## 範例
 
-#### 用 Link List 實作 Stack
+### 用 Link List 實作 Stack
 
 ```java
 public class Stack {
@@ -242,7 +242,7 @@ public class Example2 {
 }
 ```
 
-#### 用 Link List 實作 Queue
+### 用 Link List 實作 Queue
 
 ```java
 public class Queue {

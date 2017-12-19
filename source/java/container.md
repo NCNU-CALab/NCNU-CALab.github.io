@@ -10,7 +10,7 @@ title: 容器類別
 * [Enumeration](https://rawgit.com/NCNU-CALab/java.programming.im/master/docs/api/java/util/Enumeration.html)：可利用此類別將 Hashtable 內的資料逐一取出
 * [Stack](https://rawgit.com/NCNU-CALab/java.programming.im/master/docs/api/java/util/Stack.html) with `push()` `pop()` methods
 
-### 範例程式
+## 範例程式
 
 ```java
 import java.util.*;

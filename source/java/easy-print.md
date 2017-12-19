@@ -7,7 +7,7 @@ JDK 對印表的支援不多，主要是以「所視即所得」的觀念，將 
 
 本程式另將原始碼公開於 [GitHub](https://github.com/NCNU-CALab/EasyPrint) 歡迎指教  
 
-### Print.java
+## Print.java
 
 ```java
 package ncnu.print;
@@ -288,7 +288,7 @@ public abstract class Print implements ActionListener {
 }
 ```
 
-### PrintCanvas.java
+## PrintCanvas.java
 
 ```java
 package ncnu.print;
@@ -461,7 +461,7 @@ public abstract class PrintCanvas extends Canvas {
 }
 ```
 
-### 圖形與字型公用程式
+## 圖形與字型公用程式
 
 ```java
 package ncnu.print;
@@ -704,7 +704,7 @@ public class CharArea {
 }
 ```
 
-### 印表範例
+## 印表範例
 
 使用以上類別的印表程式 `PrintYLNoticeA4.java`  
 
@@ -1059,7 +1059,7 @@ public class PrintYLNoticeA4 extends Print {
 }
 ```
 
-#### 執行後的結果
+### 執行後的結果
 
 ![執行後的結果1](https://github.com/NCNU-CALab/java.programming.im/raw/master/images/print1.jpg)
 

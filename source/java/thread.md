@@ -465,7 +465,7 @@ public class ReaderWriter extends Thread {
 
 本節舉出幾個不同的例子，說明多個 Reader-Writer 時的可能排程法。
 
-#### Single Reader-Writer：只同時允許一個執行緒存取
+### Single Reader-Writer：只同時允許一個執行緒存取
 
 ```java
 public class SingleReaderWriter {
@@ -526,7 +526,7 @@ public class Test {
 }
 ```
 
-#### Reader 優先
+### Reader 優先
 
 ```java
 public class ReadersPreferredMonitor {
@@ -563,7 +563,7 @@ public class ReadersPreferredMonitor {
 }
 ```
 
-#### Writer 優先
+### Writer 優先
 
 ```java
 public class WritersPreferredMonitor {
@@ -600,7 +600,7 @@ public class WritersPreferredMonitor {
 }
 ```
 
-#### Reader 和 Writer 交互執行
+### Reader 和 Writer 交互執行
 
 ```java
 public class AlternatingReadersWritersMonitor {
@@ -644,7 +644,7 @@ public class AlternatingReadersWritersMonitor {
 }
 ```
 
-#### 給號依序執行
+### 給號依序執行
 
 ```java
 public class TakeANumberMonitor {

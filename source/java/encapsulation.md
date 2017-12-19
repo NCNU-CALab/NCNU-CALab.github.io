@@ -1,11 +1,11 @@
 ---
 title: 封裝
 ---
-# 封裝的意義
+## 封裝的意義
 
 物件導向程式設計的原則之一，是讓實作和界面分開，以便讓同一界面但不同的實作的物件能以一致的面貌讓外界存取，為了達到此目標，java 允許設計人員規範類別成員以及類別本身的存取限制。
 
-# 類別成員的存取
+## 類別成員的存取
 
 所謂封裝 (Encapsulation), 是指 class A 的設計者可以指定其他的 class 能否存取 A 的某個 member。Java 定義了四種存取範圍：
 
@@ -33,7 +33,7 @@ public class EncapsulationExample {
 
 如果 member 的前面沒有 `private`, `protected`, `public` 其中一個修飾字，則該 member 的存取範圍就是 `package`。從以上的敘述，讀者可以推知這四種存取範圍的大小是 `public` > `protected` > `package` > `private`。
 
-# Package 的定義
+## Package 的定義
 
 所謂 `package`, 可以想成是在設計或實作上相關的一群 `class`。要宣告某 `class` 屬於某 `package`, 其語法為
 
@@ -81,7 +81,7 @@ public class B {}
 
 同一個 `.java` 檔裡面, 可以定義好幾個 `class`，但最多只能有一個宣告為 `public class`。此限制是因為 java 希望每一個編譯的單元 (`.java` 檔) 都有唯一的界面宣告。那麼 `public class` 和 `class` 的區別何在？`non public class` 只能給同一個 `package` 內的其他 `class` 引用，`public class` 則可以給任何 `class` 引用。
 
-# Package 的引用
+## Package 的引用
 
 假如 `Class A` 用到 `package myPackage` 裡的 `Class B`，為了檢查 `A` 使用到 `B` 的部分是否符合 `B` 的原始定義，諸如方法存不存在，參數正不正確等問題，Compiler 必須引入 `class B` 的定義，以便進行編譯時期的檢查。引入的語法為
 
@@ -135,7 +135,7 @@ public class Hello {
 
 只要不會造成混淆, 一般我們都使用省略 `package` 路徑的 `class` 簡稱。但是如果我們 `import P1` 和 `P2` 兩個 `package`, 而這兩個 `package` 碰巧都定義了同名的 `class A`, 則用到 `A` 的地方就比需以 `P1.A` 和 `P2.A `來區別了。
 
-# 下面的程式碼哪裡有錯?
+## 下面的程式碼哪裡有錯?
 
 ```java
 package p1;
@@ -187,7 +187,7 @@ public class Example4 extends Access {
 }
 ```
 
-# Java 檔和 Class 檔的相依性
+## Java 檔和 Class 檔的相依性
 
 傳統程式開發的流程是 Compile 個別 Source Code，然後 Link 所有的 Object Code 成為執行檔。對大型的應用程式來說，常見的問題之一是如何確定 Link 時所需的 Object Code 是由最新的 Source 編譯而來? 尤其模組間存在相依性，如模組 `A` 可能用到模組 `B` 裡的函數，如果 `B` 的函數有修改參數，則 `A` 模組也要重新編譯。換句話說單看 source code 和 object code 的產生時間是不行的。最簡單的方法就是在 Link 前將所有的 Source Code 重新編譯一次，但這樣做有以下幾個問題:
 
@@ -201,7 +201,7 @@ public class Example4 extends Access {
 
 如果應用軟體只有單一的進入點，例如 `class A` 的 `public static void main(String[] argv)`，則只要編譯 `A.java` 就會自動編譯其他需要重新編譯的 `.java` 檔。如果應用軟體有兩個以上的進入點，如網路程式的 client 端和 server 端的進入點會不一樣，只要寫個批次檔編譯相關進入點的 `.java` 檔即可。
 
-## 用 Link List 實作 Stack
+### 用 Link List 實作 Stack
 
 ![](https://raw.githubusercontent.com/NCNU-CALab/java.programming.im/master/images/stack1.jpg)
 
@@ -231,16 +231,16 @@ public class Stack {
 
 ---
 
-### Link List Stack Push Step 1
+#### Link List Stack Push Step 1
 ![](https://raw.githubusercontent.com/NCNU-CALab/java.programming.im/master/images/stack2.jpg)
 
-### Link List Stack Push Step 2
+#### Link List Stack Push Step 2
 ![](https://raw.githubusercontent.com/NCNU-CALab/java.programming.im/master/images/stack3.jpg)
 
-### Link List Stack Push Step 3
+#### Link List Stack Push Step 3
 ![](https://raw.githubusercontent.com/NCNU-CALab/java.programming.im/master/images/stack4.jpg)
 
-### Link List Stack Pop
+#### Link List Stack Pop
 ![](https://raw.githubusercontent.com/NCNU-CALab/java.programming.im/master/images/stack5.jpg)
 
 ---
@@ -258,7 +258,7 @@ public class Example {
 }
 ```
 
-## 用 Link List 實作 Queue
+### 用 Link List 實作 Queue
 
 ```java
 class Node {

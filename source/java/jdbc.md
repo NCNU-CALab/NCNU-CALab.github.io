@@ -294,7 +294,7 @@ public class SQL {
 }
 ```
 
-#### 查詢資料庫綱要
+### 查詢資料庫綱要
 
 ```java
 package ncnu.sql;

@@ -1,7 +1,7 @@
 ---
 title: 訊息傳遞
 ---
-# 訊息傳遞 (Message Passing) 和函數呼叫 (Function Call) 的不同點
+## 訊息傳遞 (Message Passing) 和函數呼叫 (Function Call) 的不同點
 
 Procedure Language 以函數作為寫作和執行的主體。函數由一群程式碼所組成，函數的開頭地址在 Compile time 或 Link time 就已經決定好了，而在 Runtime 呼叫函數時給予適當的參數。函數和記憶體之間沒有關聯性，而且函數 `A` 可以被任何其他函數呼叫，程式語言並沒有特別的規範。
 
@@ -12,7 +12,7 @@ Object-Oriented Language 以 Class 作為寫作的主體，執行時主要由 Ob
 - Object Method 定義物件接受到訊息時的反應，也就是說執行 Method 時有一個隱形的參數，意即這個物件 (this)
 - Function 的實際地址在 Compile 或 Link time 就已經決定好了，但對 OO 來說，Object 必須在 Runtime 接受到訊息後，才能決定實際要執行的 Method。
 
-# Message Passing 的語法
+## Message Passing 的語法
 
 由於 Java 只能透過 reference 來存取物件，因此 Message Passing 的語法是 `reference.method`
 

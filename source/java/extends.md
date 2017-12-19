@@ -1,7 +1,7 @@
 ---
 title: 繼承
 ---
-# 基本觀念
+## 基本觀念
 
 Encapsulation, Message Passing 以及 Inheritance 是構成 Object-Oriented 的三大要素，如果某程式語言只具備前面兩項特性，一般成為 Object-Based。所謂 Inheritance(繼承)，是指 Sub Class(子類別) 繼承 Super Class(父類別) 後，就會自動取得父類別特性。如果子類別繼承了一個以上的父類別，則稱為 Multiple Inheritance(多重繼承)。Java 為了避開多重繼承的複雜性，class 只允許單一繼承。
 
@@ -44,7 +44,7 @@ public class A extends java.lang.Object {
 }
 ```
 
-# UpCasting(向上轉型) 和 DownCasting(向下轉型)
+## UpCasting(向上轉型) 和 DownCasting(向下轉型)
 
 所謂 casting 是指型態轉換，UpCasting 是將子類別型態的 reference 轉型為父類別型態，DownCasting 則是將父類別型態的 reference 轉型成子類別型態。由於子類別可以視為和父類別相容，如 `Fish`, `Dog`, `Bird` 都是一種 `Animal`，因此 UpCasting 一定沒有問題：
 
@@ -101,7 +101,7 @@ public class InheritanceExample {
 }
 ```
 
-# Override(覆寫)
+## Override(覆寫)
 
 子類別重新定義它所能看到的父類別中的 method(如 `public`, `protected`，如果子類別和父類別在同一個 `package` 裡，則沒有修飾字的 method 也可以)，稱為 override。
 
@@ -135,7 +135,7 @@ public class C1 extends C2 {
 }
 ```
 
-# Virtual Function(虛擬函數)
+## Virtual Function(虛擬函數)
 
 在訊息傳遞的章節裡，我們有提到過 Object 接收到訊息後，是在 Runtime 才決定實際所要呼叫的 Method。由於父類別的 reference 可以指到子類別物件 (Polymorphism)，而子類別和父類別可能都定義了相同的 Method(Override)，當使用父類別 reference 傳遞訊息給子類別物件時，應該要呼叫父類別的方法還是子類別的方法？如果
 
@@ -208,7 +208,7 @@ class Bird extends Animal {
 
 - 執行起來比較慢
 
-# 本章觀念整理範例
+## 本章觀念整理範例
 
 ```java
 public class Shape2D { // define super class
@@ -298,7 +298,7 @@ public class Main { // example for non-virtual function implementation
 }
 ```
 
-# final 修飾字
+## final 修飾字
 
 `final` 除可用來修飾變數外，也可放在 class 和 object method 前面：
 
@@ -311,7 +311,7 @@ public final class FinalClass {
 
 放在 `class` 前面表示 class 不可被繼承，放在 object method 表示不可被 Override。
 
-# 繼承關係下的 Constructor 執行順序
+## 繼承關係下的 Constructor 執行順序
 
 - 先將所有變數設為內定值。對數值型態來說，其值為 0；對 reference 來說，其值為 `null`；對 boolean 來說，其值為 `false`。
 - 呼叫父類別的 constructor。如果子類別 Constructor 裡沒有指定父類別的 Constructor，則使用父類別沒有參數的 Constructor。

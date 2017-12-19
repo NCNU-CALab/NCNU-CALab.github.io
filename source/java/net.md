@@ -1,7 +1,7 @@
 ---
 title: NET
 ---
-### SMTP Client
+## SMTP Client
 
 ```java
 /* Program Name: SMTP.java
@@ -166,7 +166,7 @@ public class SMTP extends Thread {
 }
 ```
 
-### HTTP Server
+## HTTP Server
 
 ```java
 /*

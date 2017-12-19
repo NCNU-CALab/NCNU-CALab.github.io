@@ -1,7 +1,7 @@
 ---
 title: 類別與物件
 ---
-# 類別與物件的基本概念
+## 類別與物件的基本概念
 
 所謂物件，說得白話一點，可稱之為「東西」。這是個很抽象的名詞，我們若以它具體的特性來描述，會比較清楚：
 - Object 有生命週期，會「產生」和「消滅」
@@ -23,7 +23,7 @@ title: 類別與物件
 - 上述兩個可總稱為 Class Member
 - 和其他 Class 間的繼承關係
 
-# 如何以Java撰寫類別
+## 如何以Java撰寫類別
 
 Java 規定公共類別 (public class) 必須寫在該公共類別名稱的 `.java` 檔案內，例如 `public class Example` 就必須寫在 `Example.java` 這個檔案內。`Example.java` 裡面也可以定義其他的類別，但是只有 `class Example` 能夠宣告為 `public`，其他 `Example.java` 裡的 `class` 都不能宣告為 `public`。當 Java Virtual Machine 啟動時，它會去找命令列上所指定的 `class` 裡的 `public static void main(String[] argv)` 方法，當做是程式的進入點。這有點像是 C 語言的 `main` ， 不同處在於每個 java class 都可以定義自己的 `public static void main(String[] argv)`。
 
@@ -115,7 +115,7 @@ public class A {
 }
 ```
 
-# Overloading
+## Overloading
 
 同一個 class 裡的 Method 名稱可以重複使用，只要可以由 Method 的參數個數和型態來區分就可以了。這種觀念稱為 overloading 。
 
@@ -144,7 +144,7 @@ public class Overloading {
 
 上面的例子裡說明 constructor 也可以 overloading 。要特別注意的是，傳回值並不能用來分辨要呼叫哪個 method，因此若再加上 `public int print()` 的宣告，就會造成編譯錯誤了。
 
-# 初始化的執行順序
+## 初始化的執行順序
 
 Class variable 是在該類別載入 JVM 時進行初始化的，因此寫作上經常在 class variable 的宣告後面加上初始化的動作。對 Object Variable 來說，是在產生 Object 時進行初始化的，但初始化的步驟可以寫在變數宣告後，也可以寫在 constructor 內，因此必須對其執行順序有所了解。步驟如下：
 
@@ -202,7 +202,7 @@ public class Main {
 }
 ```
 
-# final 關鍵字
+## final 關鍵字
 
 final 關鍵字用在變數宣告時，表示該變數的值只能在宣告時給定，然後就不能再更改了。
 ```java
