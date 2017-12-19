@@ -1,0 +1,37 @@
+{
+	"logo": {
+		"text": "Site Title",
+		"type": "link",
+		"path": "index.html"
+	},
+	"main": [
+		{
+			"text": "C 程式語言教學",
+			"type": "label"
+		},
+		{
+			"text": "Java 程式語言教學",
+			"type": "label",
+			"children": [
+				{
+					"text": "陣列",
+					"type": "link",
+					"path": "java/array.html"
+				},
+				{
+					"text": "Java 與 C 的比較",
+					"type": "link",
+					"path": "java/java-vs-c.html"
+				}
+			]
+		},
+		{
+			"text": "資料結構與演算法",
+			"type": "label"
+		},
+		{
+			"text": "題庫",
+			"type": "label"
+		}
+	]
+}
