@@ -1,6 +1,6 @@
 {
 	"logo": {
-		"text": "Site Title",
+		"text": "Programming Yu",
 		"type": "link",
 		"path": "index.html"
 	},
@@ -14,14 +14,79 @@
 			"type": "label",
 			"children": [
 				{
+					"text": "Java 與 C 的比較",
+					"type": "link",
+					"path": "java/java-vs-c.html"
+				},
+				{
+					"text": "類別與物件",
+					"type": "link",
+					"path": "java/class-and-obj.html"
+				},
+				{
 					"text": "陣列",
 					"type": "link",
 					"path": "java/array.html"
 				},
 				{
-					"text": "Java 與 C 的比較",
+					"text": "封裝",
 					"type": "link",
-					"path": "java/java-vs-c.html"
+					"path": "java/encapsulation.html"
+				},
+				{
+					"text": "訊息傳遞",
+					"type": "link",
+					"path": "java/message-passing.html"
+				},
+				{
+					"text": "繼承",
+					"type": "link",
+					"path": "java/extends.html"
+				},
+				{
+					"text": "介面",
+					"type": "link",
+					"path": "java/interface.html"
+				},
+				{
+					"text": "例外處理",
+					"type": "link",
+					"path": "java/exception.html"
+				},
+				{
+					"text": "線串與同步處理",
+					"type": "link",
+					"path": "java/thread.html"
+				},
+				{
+					"text": "容器類別",
+					"type": "link",
+					"path": "java/container.html"
+				},
+				{
+					"text": "GUI",
+					"type": "link",
+					"path": "java/gui.html"
+				},
+				{
+					"text": "IO",
+					"type": "link",
+					"path": "java/io.html"
+				},
+				{
+					"text": "NET",
+					"type": "link",
+					"path": "java/net.html"
+				},
+				{
+					"text": "JDBC",
+					"type": "link",
+					"path": "java/jdbc.html"
+				},
+				{
+					"text": "印表",
+					"type": "link",
+					"path": "java/easy-print.html"
 				}
 			]
 		},
