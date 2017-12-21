@@ -12,36 +12,36 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://ncnu-calab.github.io/java.hexo
-root: /java.hexo/
-# permalink: :year/:month/:day/:title/
+# url: https://ncnu-calab.github.io/java.hexo
+# root: /java.hexo/
+permalink: questions/:title/
 # permalink_defaults:
 
 # Directory
-# source_dir: source
-# public_dir: public
-# tag_dir: tags
+source_dir: source
+public_dir: public
+tag_dir: tags
 # archive_dir: archives
-# category_dir: categories
+category_dir: categories
 # code_dir: downloads/code
 # i18n_dir: :lang
 # skip_render:
 
 # Writing
 # new_post_name: :title.md # File name of new posts
-# default_layout: post
+default_layout: page
 # titlecase: false # Transform title into titlecase
-# external_link: true # Open external links in new tab
+external_link: true # Open external links in new tab
 # filename_case: 0
-# render_drafts: false
+render_drafts: false
 # post_asset_folder: false
 # relative_link: false
 # future: true
-# highlight:
-#   enable: true
-#   line_number: true
-#   auto_detect: false
-#   tab_replace:
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace:
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -61,8 +61,8 @@ root: /java.hexo/
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-# date_format: YYYY-MM-DD
-# time_format: HH:mm:ss
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
