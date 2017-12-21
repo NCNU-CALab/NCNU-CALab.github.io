@@ -3,7 +3,11 @@
 ### Install Dependencies
 ```
 $ npm install hexo-cli -g
-$ npm install && npm run postinstall
+$ npm install
+
+// Init submodule
+$ git submodule init
+$ git submodule update
 ```
 
 ### Testing
