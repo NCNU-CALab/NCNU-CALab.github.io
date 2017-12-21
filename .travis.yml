@@ -6,6 +6,8 @@ node_js:
 install:
   - npm install
   - npm run build
+  - cd theme/doc
+  - npm install
 
 deploy:
   local_dir: ./public
