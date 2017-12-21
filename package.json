@@ -2,7 +2,6 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "ln -s ../node_modules/hexo-theme-doc ./themes/doc &>/dev/null || true"
   },
   "private": true,
   "hexo": {
@@ -17,7 +16,6 @@
     "hexo-renderer-ejs": "^0.3.0",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0",
-    "hexo-theme-doc": "github:NCNU-CALab/hexo-theme-doc#calab-books"
+    "hexo-server": "^0.2.0"
   }
 }
