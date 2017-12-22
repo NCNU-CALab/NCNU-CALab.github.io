@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: SSYU 的書們
 subtitle:
 description:
-author: John Doe
-language:
-timezone:
+author: SSYU and His Merrie Children
+language: zh
+timezone: Asia/Taipei
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
