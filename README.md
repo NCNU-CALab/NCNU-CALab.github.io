@@ -21,10 +21,19 @@ $ npm install -g hexo-cli
 
 ### Clone this repo and install dependencies
 ```
+# clone repo
 $ git clone https://github.com/NCNU-CALab/java.hexo.git
+
+# install dependencies
 $ cd java.hexo
 $ npm install
+
+# install theme
 $ git submodule update --init --recursive
+
+# install theme dependencies
+$ cd themes/doc
+$ npm install --prod
 ```
 ## Writing
 
