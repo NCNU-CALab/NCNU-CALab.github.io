@@ -24,8 +24,7 @@ $ npm install -g hexo-cli
 $ git clone https://github.com/NCNU-CALab/java.hexo.git
 $ cd java.hexo
 $ npm install
-$ git submodule init
-$ git submodule update
+$ git submodule update --init --recursive
 ```
 ## Writing
 
