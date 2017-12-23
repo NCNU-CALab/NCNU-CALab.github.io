@@ -70,8 +70,24 @@ title: 程式寫作概論
 
 以流程圖 (Flow Chart) 來表示
 
-![](https://raw.githubusercontent.com/NCNU-CALab/c.programming.im/master/images/leapyear.jpg)
+```flow
+mod4=>condition: year % 4 == 0
+mod100=>condition: year % 100 == 0
+mod400=>condition: year % 400 == 0
+no4=>operation: 不是閏年
+yes100=>operation: 閏年
+no400=>operation: 不是閏年
+yes400=>operation: 閏年
 
+mod4(no, right)->no4
+mod4(yes)->mod100
+mod100(no, right)->yes100
+mod100(yes)->mod400
+mod400(no, right)->no400
+mod400(yes)->yes400
+```
+  
+  
 以程式來表示
 
 ```c

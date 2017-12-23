@@ -85,6 +85,12 @@ math:
   #   config:
   #     # KaTeX config
 
+flowchart:
+  # raphael:   # optional, the source url of raphael.js
+  # flowchart: # optional, the source url of flowchart.js
+  options: # options used for `drawSVG`
+    # font-size: 16
+
 ignore:
   - '**/themes/**/*(target|node_modules|packages|lib)'
   - '**/.+(*)' # ignoring all dirs and files starting with dot (.git, .idea, ...)
