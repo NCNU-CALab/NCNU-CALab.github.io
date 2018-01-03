@@ -6,14 +6,15 @@ node_js:
 install:
   - npm install
   - cd themes/doc
-  - npm install
+  - npm install --prod
   - cd ../../
   - npm run build
 
 deploy:
+  repo: master
   local_dir: ./public
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
   on:
-    branch: master
+    branch: source

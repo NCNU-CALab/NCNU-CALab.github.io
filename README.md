@@ -2,7 +2,7 @@
 
 ## Structure
 | Purpose | Layout        | Path          |
-|:-----| :-------------: |:-------------| 
+|:-----| :-------------: |:-------------|
 | C 語言程式教學 | page | source/c |
 | Java 語言程式教學 | page | source/java |
 | 資料結構與演算法程式 | page | source/dsa |
@@ -22,10 +22,10 @@ $ npm install -g hexo-cli
 ### Clone this repo and install dependencies
 ```
 # clone repo
-$ git clone https://github.com/NCNU-CALab/java.hexo.git
+$ git clone https://github.com/NCNU-CALab/NCNU-CALab.github.io.git
 
 # install dependencies
-$ cd java.hexo
+$ cd NCNU-CALab.github.io
 $ npm install
 
 # install theme
@@ -47,17 +47,17 @@ $ hexo new draft "Question Title"
 
 | Variable | Purpose|
 |:-----:| :------------- |
-| title | question display title | 
+| title | question display title |
 | date | question published time |
-| category | question source | 
-| tags | just tags | 
+| category | question source |
+| tags | just tags |
 
 ### Starting the server
 To view newly created site in a browser, start the local server:
 
 ```
 $ hexo server --draft
-# will run at http://localhost:4000/java.hexo/.
+# will run at http://localhost:4000.
 ```
 
 ### Publishing drafts
