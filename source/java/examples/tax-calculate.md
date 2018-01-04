@@ -1,3 +1,6 @@
+---
+title: 所得稅計算
+---
 ```java
 /*
  * Program Name: Tax.java
