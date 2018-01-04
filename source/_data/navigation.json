@@ -109,6 +109,17 @@
 					"text": "印表",
 					"type": "link",
 					"path": "java/easy-print.html"
+				},
+				{
+					"text": "範例",
+					"type": "label",
+					"children": [
+						{
+							"text": "所得稅計算",
+							"type": "link",
+							"path": "java/examples/tax-calculate.html"
+						},
+					]
 				}
 			]
 		},
