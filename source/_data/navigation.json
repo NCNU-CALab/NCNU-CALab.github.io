@@ -32,6 +32,15 @@
 			]
 		},
 		{
+			"text": "C 程式語言範例",
+			"type": "label",
+			"children": [
+				{
+					
+				}
+			]
+		},
+		{
 			"text": "Java 程式語言教學",
 			"type": "label",
 			"children": [
@@ -109,17 +118,17 @@
 					"text": "印表",
 					"type": "link",
 					"path": "java/easy-print.html"
-				},
+				}
+			]
+		},
+		{
+			"text": "Java 程式語言範例",
+			"type": "label",
+			"children": [
 				{
-					"text": "範例",
-					"type": "label",
-					"children": [
-						{
-							"text": "所得稅計算",
-							"type": "link",
-							"path": "java/examples/tax-calculate.html"
-						}
-					]
+					"text": "所得稅計算",
+					"type": "link",
+					"path": "java/examples/tax-calculate.html"
 				}
 			]
 		},
