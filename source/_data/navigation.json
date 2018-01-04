@@ -36,9 +36,7 @@
 			"type": "label",
 			"children": [
 				{
-					"text": "所得稅計算",
-					"type": "link",
-					"path": "java/examples/tax-calculate.html"
+					
 				}
 			]
 		},
