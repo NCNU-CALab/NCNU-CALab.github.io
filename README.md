@@ -60,7 +60,7 @@ $ hexo server --draft
 # will run at http://localhost:4000.
 ```
 
-if you get some error when run hexo server on Linux (e.g ubuntu), you may need [this](https://hexo.io/docs/troubleshooting.html#ENOSPC-Error-Linux)
+If you get ENOSPC Error when run hexo server on Linux (e.g. Ubuntu), you may need [this](https://hexo.io/docs/troubleshooting.html#ENOSPC-Error-Linux)
 
 ### Publishing drafts
 When it's time to move the draft to a "live" post for the world to see, use the hexo publish command:
