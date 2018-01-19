@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 | The 3n + 1 problem </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"title":"The 3n + 1 problem","path":"questions/The-3n-1-problem/"},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1>The 3n + 1 problem</h1>
+
+        
+          
+          <h4>題目來源：<a href="/categories/ACM/">ACM</a></h4>
+        
+
+        
+          
+          <h4><a href="/tags/brute-force/">#brute force</a></h4>
+        
+
+        <h2 id="題目說明"><a href="#題目說明" class="headerlink" title="題目說明"></a>題目說明</h2><p>考慮以下的演算法：</p>
+<ol>
+<li>輸入 n</li>
+<li>印出 n</li>
+<li>如果 n = 1 結束</li>
+<li>如果 n 是奇數 那麼 n=3*n+1</li>
+<li>否則 n=n/2</li>
+<li>GOTO 2</li>
+<li>例如輸入 22，得到的數列： 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1</li>
+</ol>
+<p>據推測此演算法對任何整數而言會終止（當列印出 1 的時候）。雖然此演算法很簡單，但以上的推測是否真實卻無法知道。然而對所有的 n ( 0 &lt; n &lt; 1,000,000 ) 來說，以上的推測已經被驗證是正確的。</p>
+<p>給一個輸入 n，透過以上的演算法我們可以得到一個數列（1 作為結尾）。此數列的長度稱為 n 的 cycle-length。上面提到的例子，22 的 cycle length 為 16。</p>
+<p>問題來了：對任 2 個整數 i，j 我們想要知道介於 i，j（包含 i，j）之間的數所產生的數列中最大的 cycle length 是多少。</p>
+<p><strong>數學式範例</strong><br><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mrow><mfrac><mrow><mo>−</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></mrow><annotation encoding="application/x-tex">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.35em;"></span><span class="strut bottom" style="height:1.695em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord mathit">x</span><span class="mrel">=</span><span class="mord textstyle uncramped"><span class="mord reset-textstyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">2</span><span class="mord mathit">a</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.5319055em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathit">b</span><span class="mbin">±</span><span class="sqrt mord"><span class="sqrt-sign" style="top:0.031293571428571365em;"><span class="style-wrap reset-scriptstyle textstyle uncramped">√</span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">​</span></span><span class="mord scriptstyle cramped"><span class="mord"><span class="mord mathit">b</span><span class="vlist"><span style="top:-0.289em;margin-right:0.07142857142857144em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord mathrm">4</span><span class="mord mathit">a</span><span class="mord mathit">c</span></span></span><span style="top:-1.0544207142857145em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">​</span></span><span class="reset-scriptstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1.4285714285714286em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></span></p>
+<h2 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h2><h2 id="Pseudo-Code"><a href="#Pseudo-Code" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h2><h2 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h2><p><strong>Hello.class</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>

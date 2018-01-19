@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 | 電腦系統概論 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"title":"電腦系統概論","path":"c/system-intro.html"},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1>電腦系統概論</h1>
+        <p>電腦是一種用來處理資訊的機器。我們可以用圖一的 “輸入 – 處理 – 輸出” 的模型來描述電腦系統工作的方式。這個 “輸入 – 處理 – 輸出” 的模型是由電腦硬體、軟體和資料等三個元件所組成。電腦硬體是作為輸出入資料和處理資料的實體媒介。系統軟體和應用軟體則提供了電腦硬體執行指令的確實順序。資料是我們用來表達資訊的媒介，他們以用各種不同的格式存在，並可被電腦系統處理。以規腦硬體和系統軟體組成了電腦系統的架構 (Computer System Architecture)，以提供使用者在其上執行應用程式和處理資料。</p>
+<p><img src="https://raw.githubusercontent.com/NCNU-CALab/c.programming.im/master/images/Image3.gif" alt=""></p>
+<p>圖一 電腦系統處理程序</p>
+<h2 id="硬體元件"><a href="#硬體元件" class="headerlink" title="硬體元件"></a>硬體元件</h2><p>一個簡化的典型的電腦系統架構可由圖二來表示。電腦的運算是由中央處理單元 (Central Processing Unit, CPU) 來執行。它包含了控制單元 (Control Unit, CU) 和算術邏輯單元 (Arithmetic and Logic Unit, ALU) 兩大部份。控制單元用來解釋電腦指令，搬移 CPU 內部資料，以指揮協調 CPU 各部份的運作。ALU 是電腦指令主要的執行部份，它又可細分成加法器、乘法器、及多個暫存器 (Register) 等部份。暫存器是 CPU 內部用來儲存資料的地方。</p>
+<p>記憶體是用來儲存程式和資料的地方。一般又稱為 RAM(Random Access Memory) 或 Main Memory(主記憶體)。我們可將記憶體視為由一個個小格子所組成的陣列，每個格子內都儲存著一個二進位數字以代表程式指令或資料。我們給每一個格子一個特有的編號，稱為地址 (Address)，就像我們的門牌號碼一樣，可供 CPU 定址某一塊記憶體。</p>
+<p>輸入輸出 (Input / Output, I/O) 裝置是我們最常見的硬體元件。常見的輸入元件有鍵盤、滑鼠、搖桿、DVD 光碟機 (或燒錄機) 等。常見的輸出元件有螢幕、印表機、喇叭等。可同時做輸入輸出的元件有磁碟機、磁帶機等儲存媒介及網路卡等。CPU、RAM 和之間是由匯流排 (Bus) 連接起來。Bus 係作為連接其上各硬體元件交換電子資料的路徑。</p>
+<p><img src="https://raw.githubusercontent.com/NCNU-CALab/c.programming.im/master/images/Image5.gif" alt=""></p>
+<p>圖二 電腦系統架構</p>
+<h2 id="軟體元件"><a href="#軟體元件" class="headerlink" title="軟體元件"></a>軟體元件</h2><p>軟體元件是由許多的程式 (Program) 所組成。這些程式是用來指揮電腦硬體的運作，以達我們的工作。我們一般將軟體分為系統軟體和應用軟體兩大類。系統軟體幫我們管理檔案、分配電腦的各種資源、執行程式以及從鍵盤接收我們的命令。其中和管理電腦相關的一些程式我們稱為作業系統 (Operating System)，如 Window NT 和 UNIX 都是一種作業系統。而應用軟體則幫助我們完成特定的工作，如 Word 可用來編輯文書，Excel 可用來作分析計算等。作業系統是電腦系統不可或缺的一部份，當電腦啟動時，首先會執行儲存在唯讀是記憶體 (Read Only Memory, ROM) 內的程式，此程式會從本地磁碟機或透過網路從伺服器的磁碟機上將作業系統載入記憶體 (Random Access Memory, RAM) 內執行，然後我們就可以透過輸入裝置下達命令，以執行應用程式來處理我們的資料。</p>
+<h2 id="數字系統"><a href="#數字系統" class="headerlink" title="數字系統"></a>數字系統</h2><h3 id="數字表示法"><a href="#數字表示法" class="headerlink" title="數字表示法"></a>數字表示法</h3><p>在十進位系統中，43 = 4 * 10 + 3，而 527 = 5 * 10<sup>2</sup> + 2 * 10 + 7。目前的電腦大多使用二進位系統，我們稱一個二進位數字為一個位元 (Bit，Binary Digit)。由於 bit 實在太小了，現在記憶體的最小儲存單位通常為 8 bits，又稱為 byte。下圖是二進位系統的計數方式：</p>
+<table>
+<thead>
+<tr>
+<th>二進位</th>
+<th>等於</th>
+<th>十進位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 * 2<sup>0</sup></td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1 * 2<sup>0</sup></td>
+<td>1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1 * 2<sup>1</sup> + 0 * 2<sup>0</sup></td>
+<td>2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1 * 2<sup>1</sup> + 1 * 2<sup>0</sup></td>
+<td>3</td>
+</tr>
+<tr>
+<td>100</td>
+<td>1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 0 * 2<sup>0</sup></td>
+<td>4</td>
+</tr>
+<tr>
+<td>101</td>
+<td>1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup></td>
+<td>5</td>
+</tr>
+<tr>
+<td>110</td>
+<td>1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 0 * 2<sup>0</sup></td>
+<td>6</td>
+</tr>
+<tr>
+<td>111</td>
+<td>1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup></td>
+<td>7</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>1 * 2<sup>3</sup> + 0 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 0 * 2<sup>0</sup></td>
+<td>8</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>1 * 2<sup>3</sup> + 0 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup></td>
+<td>9</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>1 * 2<sup>3</sup> + 0 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 0 * 2<sup>0</sup></td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>一般而言，以 B 為底的 K 個數字所能表達的範圍為 R = BK。以二進位為例，不同的位元數所能表達的數字如下表：</p>
+<table>
+<thead>
+<tr>
+<th>位元數</th>
+<th>表達範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>16</td>
+</tr>
+<tr>
+<td>8</td>
+<td>256</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1,024</td>
+</tr>
+<tr>
+<td>16</td>
+<td>65,536</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1,048,576</td>
+</tr>
+<tr>
+<td>32</td>
+<td>4,294,967,296</td>
+</tr>
+<tr>
+<td>64</td>
+<td>約等於 1.6 * 10<sup>19</sup></td>
+</tr>
+<tr>
+<td>128</td>
+<td>約等於 2.6 * 10<sup>38</sup></td>
+</tr>
+</tbody>
+</table>
+<h3 id="不同數字系統的數值運算"><a href="#不同數字系統的數值運算" class="headerlink" title="不同數字系統的數值運算"></a>不同數字系統的數值運算</h3><p>十進位加法表</p>
+<table><tr><td>+</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>0</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr><tr><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr><tr><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr><tr><td>3</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr><tr><td>4</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr></table>
+
+<p>二進位加法表</p>
+<table><tr><td>+</td><td>0</td><td>1</td></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>10</td></tr></table>
+
+<p>八進位加法表</p>
+<table><tr><td>+</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>0</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td></tr><tr><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td><td>11</td></tr><tr><td>3</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td><td>11</td><td>12</td></tr><tr><td>4</td><td>4</td><td>5</td><td>6</td><td>7</td><td>10</td><td>11</td><td>12</td><td>13</td></tr><tr><td>5</td><td>5</td><td>6</td><td>7</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr><tr><td>6</td><td>6</td><td>7</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr><tr><td>7</td><td>7</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr></table>
+
+<h3 id="不同數字系統間的轉換"><a href="#不同數字系統間的轉換" class="headerlink" title="不同數字系統間的轉換"></a>不同數字系統間的轉換</h3><p>13754<sub>8</sub> = ???<sub>10</sub></p>
+<table><tr><td></td><td>(8<sup>4</sup>)</td><td>(8<sup>3</sup>)</td><td>(8<sup>2</sup>)</td><td>(8<sup>1</sup>)</td><td>(8<sup>0</sup>)</td></tr><tr><td></td><td>4096</td><td>512</td><td>64</td><td>8</td><td>1</td></tr><tr><td>X</td><td>1</td><td>3</td><td>7</td><td>5</td><td>4</td></tr></table>
+
+<p>4096 + 1536 + 448 + 40 + 4 = 6124<sub>10</sub></p>
+<p>6124<sub>10</sub> = ??????<sub>5</sub></p>
+<p>6124<sub>10</sub> = x * 5<sup>n</sup> + … + a * 5<sup>1</sup> + b * 5<sup>0</sup><br>將兩邊除以 5 會得到<br>1224 餘 4 = x * 5<sup>n-1</sup> + … + a * 5<sup>0</sup> 餘 b<br>因此可求得 b = 4. 重複此過程可得解如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">X 進位</th>
+<th style="text-align:left">數字</th>
+<th style="text-align:left">餘數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">6124</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">1224</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">244</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">48</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">0</td>
+</tr>
+</tbody>
+</table>
+<p>因此 6124<sub>10</sub> = 143444<sub>5</sub></p>
+<p>其他數字系統間的轉換：先轉成十進位再轉成另一個數字系統。</p>
+<h3 id="十六進位數字與運算"><a href="#十六進位數字與運算" class="headerlink" title="十六進位數字與運算"></a>十六進位數字與運算</h3><p>在電腦系統中我們通常以八個 Bits 為一個單位稱為位元組 (Byte)。因為 2<sup>4</sup> = 16，我們通常以兩個十六進位數字來表示一個位元組，因此十六進位系統是除了二進位系統外另一個常用的數字系統。在十六進位系統中我們以 ABCDEF 來表示 10 到 15 的數字。其加法表和乘法表請自行畫出。二進位和十六進位間很容易轉換, 這是因為 16 = 2<sup>4</sup>, 所以每 4 個一組的 2 進位數字, 可以直接轉成 1 個 16 進位的數字。如 <code>11010111011000</code> 這個二進位數字我們可以由右至左把他分為 <code>11</code> <code>0101</code> <code>1101</code> <code>1000</code> 四組，各組數字翻成十六進位就成為 35D8<sub>16</sub> 。若要轉成 8 進位，由於 8 = 2<sup>3</sup> 因此由右至左每三個一組 <code>011</code> <code>010</code> <code>111</code> <code>011</code> <code>000</code> = 32730<sup>8<sup>。</sup></sup></p>
+<h3 id="小數點的處理"><a href="#小數點的處理" class="headerlink" title="小數點的處理"></a>小數點的處理</h3><p>試問 0.12201<sub>3</sub> = 0.???<sub>10</sub></p>
+<p>==&gt; 0.12201<sub>3</sub><br>= 1/3 + 2/9 + 2/27 + 0/81 + 1/243<br>= 0.33333 + 0.22222+0.07407 + 0.00412<br>= 0.63374<sub>10</sub></p>
+<p>或 (81 + 2 * 27 + 2 * 9 + 1) / 243 = 0.63374</p>
+<p>試問 0.828125<sub>10</sub> = 0.???<sub>2</sub></p>
+<p>0.828125<sub>10</sub> = a * 2<sup>-1</sup> + b * 2<sup>-2</sup> + c * 2<sup>-3</sup> …<br>兩邊乘 2 可得<br>1.656250 = a + b * 2<sup>-1</sup> + c * 2<sup>-2</sup> …<br>因此 a 為 1. 重複此過程得解如下：</p>
+<p>0.828125 * 2<br>==&gt; 1.656250 * 2 (-1 後乘 2)<br>==&gt; 1.3125 * 2 (-1 後乘 2)<br>==&gt; 0.625 * 2<br>==&gt; 1.25 * 2 (-1 後乘 2)<br>==&gt; 0.5 * 2<br>==&gt; 1</p>
+<p>所以 0.828125<sub>10</sub> = 0.110101<sub>2</sub></p>
+<h3 id="資料格式"><a href="#資料格式" class="headerlink" title="資料格式"></a>資料格式</h3><p>程式可以用任意的格式來儲存和處理資料，這樣的格式我們稱為專屬格式。但為了便於在不同的硬體和軟體平台間交換資料，我們必須用標準的格式來表示資料。標準格式通常是由國際標準組織訂定，或因某類軟體廣為流行而後成為標準。常見的資料型態和標準如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">資料型態</th>
+<th style="text-align:left">標準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">字元 (character)</td>
+<td style="text-align:left">ASCII, EBCDIC, Unicode</td>
+</tr>
+<tr>
+<td style="text-align:left">影像 (位元應對 bit map)</td>
+<td style="text-align:left">GIF, JPEG, TIFF, Windows Butmap</td>
+</tr>
+<tr>
+<td style="text-align:left">影像 (物件)</td>
+<td style="text-align:left">PICT, PostScript</td>
+</tr>
+<tr>
+<td style="text-align:left">向量圖形與字型</td>
+<td style="text-align:left">PostScript, TrueType</td>
+</tr>
+<tr>
+<td style="text-align:left">聲音</td>
+<td style="text-align:left">Sound Blaster, WAV</td>
+</tr>
+<tr>
+<td style="text-align:left">視訊</td>
+<td style="text-align:left">MPEG, QuickTime</td>
+</tr>
+</tbody>
+</table>
+<p>ANSI(American National Standards Institute) 所制訂的 ASCII(American Standard Code for Information Interchange) 及 IBM 所定義 EBCDIC(Extended Binary Coded Decimal Interchange Code) 是兩種常用的英文文數字元編碼方式。EBCDIC 是 8 bits 的編碼方式 (只定義了 2<sup>8</sup>=256 個字元)，目前僅限於 IBM 的大型主機和終端機使用。ASCII 則是 7 bits 的編碼 (只定義了 2<sup>7</sup> = 128 個字元, 很多程設書的附錄都有表可查)，目前廣泛使用於各種電腦和終端機。近年來 ISO(International StandardsOrganization) 在 ASCII 的基礎上為不同的語言訂定了不同的 8 bits 編碼。不過 8 bits 僅能表示 256 個字元，對象形字語言是不夠的。因此 IOS 提出了 16 bits 的 Unicode 以取代舊有的 7 bits 和 8 bits 字元。Unicode 試圖將世界上的主要語言全部納入，在一個編碼空間下表達所有的語言文字。目前 Java 語言是採用 Unicode 作為其編碼的方式。Windows 也採用 Unicode。</p>
+<p>常見的字元輸入裝置：鍵盤 (keyboard)、光學辨識機 (Optical Character Recognition, OCR)、條碼機 (bar code reader)、語音輸入、中文手寫辨識、打孔機 (punched card)。</p>
+<p>不管資料的格式為何，電腦內部都是以不同大小的二進位數字來代表。這些二進位數字的解釋方法是由兩個因素來決定：</p>
+<p>CPU 所能處理的運算。</p>
+<p>用來產生應用程式的程式語言所能提供的資料型態。</p>
+<h2 id="如何表示整數資料"><a href="#如何表示整數資料" class="headerlink" title="如何表示整數資料"></a>如何表示整數資料</h2><h3 id="有號整數"><a href="#有號整數" class="headerlink" title="有號整數"></a>有號整數</h3><p>有一種方法稱為 “符號與大小表示法”：第一個 bit 作為正負號，其他的 bits 為大小。缺點是不好運算，因為加法的運算方法和運算元的正負號有關。當兩個運算子同號時，只要將數字大小的部份相加，正負號與運算元相同即可，但當兩個運算子的符號不同時，則要以減法來處理大小的部份，正負號則視相減的結果而定。這種表示法也會造成電腦邏輯線路設計上的困擾。</p>
+<p>減法比加法難實作的原因是減法需要一直借位, 而加法只要記得前一對數字加起來有沒有進位即可。有人就想出一種數字系統，可以用二進位的加法取代減法，讓邏輯線路設計簡單，跑起來又快的。<strong>就是補數系統。</strong></p>
+<h3 id="補數-Complement"><a href="#補數-Complement" class="headerlink" title="補數 (Complement)"></a>補數 (Complement)</h3><p>我們先以最多兩個數字的 10 進位數字系統為例。</p>
+<p>60 - 30 = 60 + 70 - 100。</p>
+<p>而 - 100 可以藉由 “忽略溢位” 來達成。所謂 “溢位” 是指數字計算的結果超過硬體線路所能表達的範圍，以兩個數字的 10 進位數字系統為例，只能表達 0-99，所以算出來的結果若大於 99 就發生 “溢位” 。而 “忽略溢位” 在此例中就是指 “丟棄” “忽視” “省略” 第 3 位數的意思。因此 - 30 就可由 + 70 與 “忽略溢位” 來達成。接下來的問題就是如何由 30 得到 70？ 70 = 99 - 30 + 1。讀者此時的疑問是，減法又跑出來了，這樣會比較快嗎？請注意 99 減任意數都不需要借位，因此線路比較好設計。補數的觀念用到二進位時，效用就更大了。所有都是一的二進位數 111111，減去二進位數 X，得到 Y，此時 X 和 Y 每一個對應的 bit 都是相反的，如 1111 - 0101 = 1010。換言之，求二進位的補數可以用 bit inverse 來取代減法，而 bit inverse 則是最容易實作的電路。99 - 30 稱為 30 的 9 補數，99 - 30 + 1 稱為 30 的 10 補數。</p>
+<p>令 Y 為 10 進位所能表達的最大數字, 則在 9 補數中 X 的負數是以 (Y-X) 來表達. 例如最多 3 位數的 10 進位系統中，300 的 9 補數以 (999-300)=699 來表達. 因此最多 3 位數的 10 進位系統中, 其 9 補數的對照表如下</p>
+<p>500 …999 | 0…499</p>
+<p>-499…-000 | 0…499</p>
+<p>上表是說 999 代表 - 0，998 代表 - 1，997 代表 - 2，…，500 代表 - 499。9 補數有兩個 0，+0 和 - 0，可表達的範圍在 - 499 ~ +499。</p>
+<p>10 補數中 X 的負數則定義為 (Y-X+1)，因此最多 3 位數的 10 進位系統中，其 10 補數對照表如下:<br>500 …999 | 0…499</p>
+<p>-500…-001 | 0…499</p>
+<p>上表是說 999 代表 - 1，998 代表 - 2，997 代表 - 3，…，500 代表 - 500。所以 10 補數能表達的範圍在 - 500 ~ +499。</p>
+<p>9 補數減法：將 - X 的運算, 改為 + (-X), 若有溢位, 則將結果再加 1</p>
+<h5 id="420-170"><a href="#420-170" class="headerlink" title="420-170"></a>420-170</h5><p>=&gt; 420 + 829<br>= 1249 =&gt; 249 + 1</p>
+<h5 id="100-350"><a href="#100-350" class="headerlink" title="100 - 350"></a>100 - 350</h5><p>=&gt; 100 + 649<br>= 749</p>
+<h5 id="100-200"><a href="#100-200" class="headerlink" title="-100-200"></a>-100-200</h5><p>=&gt; 899 + 799<br>= 1698 =&gt; 698 + 1</p>
+<p>10 補數減法則不必考慮溢位</p>
+<h3 id="2-進位補數-2’-complement-的特殊之處"><a href="#2-進位補數-2’-complement-的特殊之處" class="headerlink" title="2 進位補數 (2’ complement) 的特殊之處"></a>2 進位補數 (2’ complement) 的特殊之處</h3><p>由於2進位只有0和1兩個數字，你會發現：<br>1 - 0 = 1<br>1 - 1 = 0<br>二進位所能表達的最大數字Y是一個全部都是 1 的數字，在 1 補數中，-X 是以 (Y-X) 來表達，因此你會發覺 X 和 (Y-X) 的每一個 bit 都是不一樣的。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Y:   11111111</span><br><span class="line">X:   01110011</span><br><span class="line">Y-X: 10001100</span><br></pre></td></tr></table></figure>
+<p>因此在二進位的 1 補數系統中，不需要用到減法，只要將 X 的每一個 bit 都反過來，就可得到 -X 了.</p>
+<h2 id="浮點數表示法"><a href="#浮點數表示法" class="headerlink" title="浮點數表示法"></a>浮點數表示法</h2><p>本節是為了完整敘述各種數字的表達法而寫的，讀者若看不懂，並不會影響對 C 語言的瞭解，因此可跳過此節的細節部份。</p>
+<p>前面介紹了整數的表達法，但對許多應用來說 (尤其是科學運算)，整數是不夠用的，必須用到浮點數才行。為甚麼不說是 “實數”，而要說 “浮點數” 呢? 這是因為電腦是 “有限位數的二進位系統”，所以能表達的數字有限，不但不能表達像 π 這種無理數，甚至無法表達 1/3 這個有理數。而且各種應用所需的數字大小和精準度不同，有些要表達很大數字 (像天文學)，有些要表達很小的數字 (像高能物理學)，如何設計一種 “可表達範圍很大且有小數” 的二進位表示法，就成為一項挑戰。各位還記得科學符號表示法嗎? 2008 這個數字的科學符號表示法是 2.008E<sup>3</sup>。E 代表指數 (Exponential) 部份，所以 2.008E3 是表示 2.008 * 103 的意思。因為這種表達法的小數點不會固定放在個位數後面，而是會依據所要表達的數字大小而 “浮動”，所以才會被稱為是 “浮點數”。我們常用 32 bits(C 稱為 float) 或 64 bits(C 稱為 double) 來存放浮點數，其標準由 IEEE 制定。它表達的是這種形式的科學符號:</p>
+<p>+0.01E10  表示 (1+1/4) * 2<sup>2</sup>。老師你寫錯了吧，應該是 (1/4) * 2<sup>2</sup> 吧? 這是因為二進位系統中只有 0 和 1 兩個數字，因此正規化後的科學符號表示法的整數部份一定是 1，換句話說任何數字都長這個樣子，±1.mmmmEee，既然整數一定是 1，那就不要浪費了，以便可以表達更大範圍的數字。上述例子的 ± 稱為 (Sign bit)， ee 部份稱為 Exponential(指數)，mmmm 稱為 Mantissa(尾數)，以下的 SEM 就是這幾個字的縮寫。</p>
+<p>一個 IEEE(Institude of Electric and Electronic Engineering，電子電機工程協會，是一個全球最大的學術組織) 32 位元的浮點數以下面的格式來表示：</p>
+<h3 id="SEM"><a href="#SEM" class="headerlink" title="SEM"></a>SEM</h3><p>其中 S 占 1bit 為正負號，E 占 8bits 為指數部份，M 占 23bits 為尾數部份。其中指數部份採用 excess-127 表示法，即範圍為 -127~128，但 0 和 255 有特殊意義，所以實際範圍為 -126 ~ +127</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">指數部份</th>
+<th style="text-align:left">小數部份</th>
+<th style="text-align:left">所代表的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">+-0</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">非 0</td>
+<td style="text-align:left">+-2<sup>-126</sup> * 0.M</td>
+</tr>
+<tr>
+<td style="text-align:left">1 ~ 254</td>
+<td style="text-align:left">任何值</td>
+<td style="text-align:left">+-2<sup>E-127</sup> * 1.M</td>
+</tr>
+<tr>
+<td style="text-align:left">255</td>
+<td style="text-align:left">+-0</td>
+<td style="text-align:left">+-infinite</td>
+</tr>
+<tr>
+<td style="text-align:left">255</td>
+<td style="text-align:left">非 0</td>
+<td style="text-align:left">特殊狀況 (NaN)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="IEEE-64-位元浮點數表示法"><a href="#IEEE-64-位元浮點數表示法" class="headerlink" title="IEEE 64 位元浮點數表示法"></a>IEEE 64 位元浮點數表示法</h3><p>SEM</p>
+<p>其中 S 占 1bit 為正負號，E 占 11bits 為指數部份，M 占 52bits 為尾數部份。</p>
+<p>其中指數部份採用 excess-1023, 表示範圍超過 10 <sup>+ -300</sup> 次方</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>

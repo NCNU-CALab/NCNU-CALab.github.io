@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 | 訊息傳遞 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"title":"訊息傳遞","path":"java/message-passing.html"},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1>訊息傳遞</h1>
+        <h2 id="訊息傳遞-Message-Passing-和函數呼叫-Function-Call-的不同點"><a href="#訊息傳遞-Message-Passing-和函數呼叫-Function-Call-的不同點" class="headerlink" title="訊息傳遞 (Message Passing) 和函數呼叫 (Function Call) 的不同點"></a>訊息傳遞 (Message Passing) 和函數呼叫 (Function Call) 的不同點</h2><p>Procedure Language 以函數作為寫作和執行的主體。函數由一群程式碼所組成，函數的開頭地址在 Compile time 或 Link time 就已經決定好了，而在 Runtime 呼叫函數時給予適當的參數。函數和記憶體之間沒有關聯性，而且函數 <code>A</code> 可以被任何其他函數呼叫，程式語言並沒有特別的規範。</p>
+<p>Object-Oriented Language 以 Class 作為寫作的主體，執行時主要由 Object 來紀錄程式狀態。由於物件導向程式語言將 Object Variable 和 Object Method 一起定義在 Class 內，再透過 Encapsulation 的機制規範存取 Object Member 的範圍，因此 Object 的 Variable 和 Method 就組成了一個完整的個體。</p>
+<p>雖然 Object Method 寫起來就像 Function，但執行 Method 內程式碼的機制和 Function 不同：</p>
+<ul>
+<li>Object Method 定義物件接受到訊息時的反應，也就是說執行 Method 時有一個隱形的參數，意即這個物件 (this)</li>
+<li>Function 的實際地址在 Compile 或 Link time 就已經決定好了，但對 OO 來說，Object 必須在 Runtime 接受到訊息後，才能決定實際要執行的 Method。</li>
+</ul>
+<h2 id="Message-Passing-的語法"><a href="#Message-Passing-的語法" class="headerlink" title="Message Passing 的語法"></a>Message Passing 的語法</h2><p>由於 Java 只能透過 reference 來存取物件，因此 Message Passing 的語法是 <code>reference.method</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 假設People有variable age,其值限定於0到130之間</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (d &gt;= <span class="number">0</span> &amp;&amp; d &lt;= <span class="number">130</span>) &#123; <span class="comment">// 檢查年齡是否合法</span></span><br><span class="line">            age = d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">increaseAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">130</span>) &#123; <span class="comment">// 檢查年齡是否合法</span></span><br><span class="line">            <span class="keyword">this</span>.age++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        People e1, e2; <span class="comment">// e1,e2 are references to Object People, not the Object themselves</span></span><br><span class="line">        e1 = <span class="keyword">new</span> People(<span class="number">3</span>);</span><br><span class="line">        e2 = <span class="keyword">new</span> People(<span class="number">5</span>);</span><br><span class="line">        e1.setAge(<span class="number">30</span>);</span><br><span class="line">        e2.setAge(<span class="number">50</span>);</span><br><span class="line">        e1.increaseAge();</span><br><span class="line">        e2.increaseAge();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>this</code> 這個 keyword 表示接收到此訊息的物件。由於設計時是定義 Class，而執行時則是 Object 接受訊息，Class 只有一個，但 Object 可以有很多個，因此必須使用 <code>this</code> 表達現在接收到此訊息的物件。</p>
+<p>由於 Object Method 具有隱形的物件參數，因此 Class Method 不能去存取 Object Member</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorCall</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;  <span class="comment">// object variable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">objectMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">classMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        objectMethod(); <span class="comment">// Compile Error</span></span><br><span class="line">        data = <span class="number">10</span>; <span class="comment">// Compile Error</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Message Passing 在執行期間才會決定實際 Method 的機制，我們將在 Inheritance(繼承) 裡敘述。</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>

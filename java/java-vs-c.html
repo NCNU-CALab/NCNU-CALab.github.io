@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 | Java 與 C 的比較 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"title":"Java 與 C 的比較","path":"java/java-vs-c.html"},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1>Java 與 C 的比較</h1>
+        <h2 id="Java-Virtual-Machine"><a href="#Java-Virtual-Machine" class="headerlink" title="Java Virtual Machine"></a>Java Virtual Machine</h2><p>C 語言的開發模式，是編寫 <code>.c</code> 的 Source Code，再經由 Compiler 編譯成 Object Code。所謂 Object Code 指的是和硬體相關的機器指令，也就是說當我們想要把 C 程式移植到不同的硬體時，必須要重新 Compile，以產生新的執行檔。除了需要重新編譯外，新系統是否具備應用程式所需的程式庫，include 的檔案是否相容，也是程式能否在新機器上順利編譯和執行的條件之一。</p>
+<p>在實務上，為了讓 C 程式能在不同的 UNIX 版本上都能順利編譯，原作者往往必須使用前置處理器的 <code>#ifdef</code> 指令，判斷不同環境的適當寫法。如果想把在 UNIX 上開發的 C 程式移植到 Windows 上，則有用到專屬程式庫的部分 (如 UNIX 的使用者介面可能用到 X Window 的 API，Windows 就沒有支援，必須一台一台灌程式庫才行，很可能還要花錢買)，就必須重寫才行。</p>
+<p>解決此類問題的方法之一，是定義一種 Virtual Machine(虛擬機器)，讓程式語言編譯時不要翻成實體機器的指令，而是翻成 Virtual Machine 的目的碼。Virtual Machine 一般是以軟體來模擬的，只要新的平台有 Virtual Machine，則原始程式不用 Compile，執行舊機器上已有的 Virtual Machine 目的碼，就可以了。當然要達到完全不用重新 Compile 就能執行的理想，還要配合標準的程式庫才行。</p>
+<p>Java 語言基於上述理念，定義了 Java Virtual Machine，它所用的指令稱為 byte code。使用 Virtual Machine 的缺點之一，是執行的速度較慢，代價是開發的速度變快了。以現在的硬體來說，大部分應用程式的執行速度已經沒有那麼重要，反倒是軟體的開發速度和品質越來越值得重視。</p>
+<p>此外 JVM 的技術不斷進步，諸如 Just In Time(JIT) Compiler，或 HotSpot 等技術都可以讓 Java 程式以非常接近原生碼 (Native Code) 的速度執行。因此不要因為某些偏頗的報告或直覺，就不使用 Java 了。</p>
+<p>開發 Java 應用程式的工具中，最常見的是由 Java 的原創公司 Sun Micro 所出版的 JDK(Java Development Kit)。JDK 可以免費下載。以 Text Editor 寫好的 Hello.java 原始檔：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> gvar;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line">        System.out.print(s+x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">float</span> y = <span class="number">0</span>;</span><br><span class="line">        say(<span class="string">"Hello, world\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>這程式的C版本如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> gvar;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">say</span><span class="params">(<span class="keyword">char</span>[] s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s%d"</span>, s, x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">float</span> y = <span class="number">0</span>;</span><br><span class="line">    say(<span class="string">"Hello, world\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>經過：</p>
+<p><code>$ javac Hello.java</code></p>
+<p>編譯完成後會產生 byte code 格式的 <code>Hello.class</code>， 然後</p>
+<p><code>$ java Hello</code></p>
+<p>就可以利用 Java Virtual Machine(此處是 java 這個執行檔) 來執行了。</p>
+<p>上述過程中幾個比較會發生的問題是：</p>
+<ul>
+<li>javac 找不到：請設定 path 這個環境變數。</li>
+<li>javac 抱怨 class Hello 找不到：請確定你的檔名是大寫 <code>Hello.java</code>，程式內的 <code>public class Hello</code> 有沒有大小寫的問題。</li>
+<li>java 抱怨找不到 main：請確定 <code>public static void main(String[] argv)</code> 毫無錯誤。</li>
+</ul>
+<h2 id="Java-是物件導向-Object-Oriented-程式語言"><a href="#Java-是物件導向-Object-Oriented-程式語言" class="headerlink" title="Java 是物件導向 (Object-Oriented) 程式語言"></a>Java 是物件導向 (Object-Oriented) 程式語言</h2><p>Java 是由 C++ 簡化來的。由於 C++ 要和 C 完全相容，又很注重效能問題，因此 C++ 算是很複雜的程式語言。Java 在設計之初，考量的重點之一就是簡單，因此和 C++ 比起來，不僅更為物件導向，而且比 C++ 容易學習。</p>
+<p>Java 許多運算符號和敘述語法都是來自 C 語言，假設各位已經對 C 語言有所了解，本章後面的部分只將 Java 和 C 在運算符號和敘述語法上的差異點出來，相同的部分請參見 C 語言的課程內容。</p>
+<h2 id="資料型別"><a href="#資料型別" class="headerlink" title="資料型別"></a>資料型別</h2><p>Java 語言所定義的基本資料型別有</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">型別名稱</th>
+<th style="text-align:left">位元長度</th>
+<th style="text-align:left">範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">true 或 false</td>
+</tr>
+<tr>
+<td style="text-align:left">byte</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">-128 ~ 127</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">-32768 ~ 32767</td>
+</tr>
+<tr>
+<td style="text-align:left">char</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">Unicode characters</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">-2147483648 ~ 2147483647</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">-9223372036854775808 ~ 9223372036854775807</td>
+</tr>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">+-3.4028237_10+38 ~ +-1.30239846_10-45</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">+-1.76769313486231570_10+308 ~ 4.94065645841246544_10-324</td>
+</tr>
+</tbody>
+</table>
+<p>Java 的資料型態裡沒有 unsigned。</p>
+<p>Java 對數值型態的轉換比 C 稍微嚴格一點，下列左邊的部分都可以指定 (assignment) 給右邊的型別:</p>
+<p><code>byte</code> –&gt; <code>short</code> –&gt; <code>int</code> –&gt; <code>long</code> –&gt; <code>float</code> –&gt; <code>double</code></p>
+<p>除上述外，其他型別間的轉換都必須下達型別轉換 (Type Casting) 命令來處理，其形式為圓括弧裡寫上型別名稱，如 (double)</p>
+<p>由於 Java 在 char 的型態部分採用 Unicode，因此字元常數的表示法，除因循 C 的規則外，也可以直接指定 16 bits Unicode 編碼給 char 型別的變數。例如由 Windows 「字元對應表」 程式中可查到象棋中的紅車的 unicode 編碼為 <code>4FE5</code>，Java 可用 <code>\u4fe5</code> 來表達。Java 的變數也可以用 Unicode 來命名，換句話說，你可以用中文取變數名稱。</p>
+<p>除了這些基本資料型別外，Java 還有一個稱為 Reference(參考) 的型別。Reference 用來存取 Object(物件)，其功能和 C 語言的 pointer 用來存取記憶體有點像，但沒有 pointer 的 <code>&amp;+-</code> 等運算符號，而且 Reference 只能存取型態相符合的類別。宣告 <code>Reference</code> 的語法是 <code>ClassName varName</code>，例如</p>
+<p><code>String s</code>;<br>宣告 s 是一個型態為 reference 的變數，這表示我們可透過 s 來存取屬於 String 類別的物件 (s is a reference to String object)。</p>
+<p>要特別強調的是，<strong>s 並不是物件，而是用來指向 String 物件的 reference</strong>。打個比方，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 動物 </span>&#123;</span><br><span class="line">    動物 手指頭; <span class="comment">// java 因字元編碼使用unicode, 所以可用中文當變數名稱</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span> </span>&#123;</span><br><span class="line">        動物 手指頭<span class="number">2</span>;</span><br><span class="line">        手指頭<span class="number">2</span> = <span class="keyword">new</span> 動物();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>變數 <code>手指頭</code> 宣告為 reference，可指向屬於 class <code>動物</code> 的物件，<code>手指頭</code> 不是 <code>動物</code>，而是用 <code>手指頭</code> 指向某隻<code>動物</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Float f;</span><br><span class="line">java.lang.Double d;</span><br><span class="line">java.lang.Integer i;</span><br></pre></td></tr></table></figure>
+<p>以上變數的型態都是 reference</p>
+<h2 id="運算符號-Operator"><a href="#運算符號-Operator" class="headerlink" title="運算符號 (Operator)"></a>運算符號 (Operator)</h2><p>Java 語言在運算式的部分，和 C 語言極為類似，除了沒有 <code>sizeof</code>, <code>pointer</code> 和 <code>struct</code> 相關的運算符號外，另外新增了 <code>&gt;&gt;&gt;</code> 向右無號 shift，以及用來判斷物件型態的 <code>instanceof</code>。Java 的常數的表示法也和 C 相同，而 Java 裡的新資料型態 <code>boolean</code> 的合法值為 <code>true</code> 和 <code>false</code> 兩個常數。</p>
+<h3 id="算術-Arithmetic-運算符號"><a href="#算術-Arithmetic-運算符號" class="headerlink" title="算術 (Arithmetic) 運算符號"></a>算術 (Arithmetic) 運算符號</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">運算符號</th>
+<th style="text-align:left">功能敘述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">加</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">乘</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">減</td>
+</tr>
+<tr>
+<td style="text-align:left">/</td>
+<td style="text-align:left">除</td>
+</tr>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">餘數</td>
+</tr>
+<tr>
+<td style="text-align:left">++</td>
+<td style="text-align:left">加一</td>
+</tr>
+<tr>
+<td style="text-align:left">–</td>
+<td style="text-align:left">減一</td>
+</tr>
+</tbody>
+</table>
+<h3 id="邏輯-logic-運算符號"><a href="#邏輯-logic-運算符號" class="headerlink" title="邏輯 (logic) 運算符號"></a>邏輯 (logic) 運算符號</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">運算符號</th>
+<th style="text-align:left">功能敘述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&gt;</td>
+<td style="text-align:left">大於</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;</td>
+<td style="text-align:left">小於</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;=</td>
+<td style="text-align:left">大於等於</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">小於等於</td>
+</tr>
+<tr>
+<td style="text-align:left">==</td>
+<td style="text-align:left">等於</td>
+</tr>
+<tr>
+<td style="text-align:left">!=</td>
+<td style="text-align:left">不等於</td>
+</tr>
+<tr>
+<td style="text-align:left">&amp;&amp;</td>
+<td style="text-align:left">logic AND</td>
+</tr>
+<tr>
+<td style="text-align:left">&#124;&#124;</td>
+<td style="text-align:left">logic OR</td>
+</tr>
+<tr>
+<td style="text-align:left">!</td>
+<td style="text-align:left">logic NOT</td>
+</tr>
+<tr>
+<td style="text-align:left">instanceof</td>
+<td style="text-align:left">reference instanceof ClassName 判斷 reference 所指到的物件其型態是否和 ClassName 相容</td>
+</tr>
+</tbody>
+</table>
+<p>Java 語言和 C 語言有關邏輯運算最大的不同, 在於 Java 以 boolean 資料型態 (只有 true 和 false 兩種值) 判斷條件是否成立, 而 C 語言只能使用 0 或非 0。</p>
+<h3 id="位元-Bit-運算符號"><a href="#位元-Bit-運算符號" class="headerlink" title="位元 (Bit) 運算符號"></a>位元 (Bit) 運算符號</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">運算符號</th>
+<th style="text-align:left">功能敘述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left">bit AND</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;&lt;</td>
+<td style="text-align:left">left bit shift</td>
+</tr>
+<tr>
+<td style="text-align:left">&#124;</td>
+<td style="text-align:left">bit OR</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;&gt;</td>
+<td style="text-align:left">right bit shift with sign</td>
+</tr>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">bit XOR</td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">1 補數</td>
+</tr>
+<tr>
+<td style="text-align:left">&gt;&gt;&gt;</td>
+<td style="text-align:left">同 &gt;&gt; 但左邊一律補零</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他運算符號"><a href="#其他運算符號" class="headerlink" title="其他運算符號"></a>其他運算符號</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">運算符號</th>
+<th style="text-align:left">功能敘述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">=</td>
+<td style="text-align:left">將右邊的值複製到左邊的變數</td>
+</tr>
+<tr>
+<td style="text-align:left">(type)</td>
+<td style="text-align:left">將右邊的數值或 reference 轉換成 type 型別</td>
+</tr>
+<tr>
+<td style="text-align:left">+=</td>
+<td style="text-align:left">將右邊的數值加上左邊的數值然後指定給左邊的變數</td>
+</tr>
+<tr>
+<td style="text-align:left">?:</td>
+<td style="text-align:left">若 <code>?</code> 左邊成立則做 <code>:</code> 左邊否則做 <code>:</code> 右邊</td>
+</tr>
+<tr>
+<td style="text-align:left">,</td>
+<td style="text-align:left">合併兩個運算視為一個敘述</td>
+</tr>
+<tr>
+<td style="text-align:left">(運算式)</td>
+<td style="text-align:left">表示 () 內優先運算</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">Reference.ObjectMember 或 ClassName.ClassName 存取物件或類別成員</td>
+</tr>
+<tr>
+<td style="text-align:left">new</td>
+<td style="text-align:left">產生物件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="優先權"><a href="#優先權" class="headerlink" title="優先權"></a>優先權</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">種類</th>
+<th style="text-align:left">運算符號</th>
+<th style="text-align:left">結合順序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">group</td>
+<td style="text-align:left">(op)</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">postfix</td>
+<td style="text-align:left">[] . (params) op++ op–</td>
+<td style="text-align:left">right to left</td>
+</tr>
+<tr>
+<td style="text-align:left">prefix</td>
+<td style="text-align:left">++op –op +op -op ~ !</td>
+<td style="text-align:left">right to left</td>
+</tr>
+<tr>
+<td style="text-align:left">creation or casting</td>
+<td style="text-align:left">new (type)op</td>
+<td style="text-align:left">right to left</td>
+</tr>
+<tr>
+<td style="text-align:left">multiplicative</td>
+<td style="text-align:left">* / %</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">additive</td>
+<td style="text-align:left">+ -</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">shift</td>
+<td style="text-align:left">&lt;&lt;&gt;&gt; &gt;&gt;&gt;</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">relational</td>
+<td style="text-align:left">&lt;&gt; &lt;=&gt;= instanceof ==</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">equality</td>
+<td style="text-align:left">== !=</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise and</td>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise exclusive or</td>
+<td style="text-align:left">^</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">bitwise inclusive or</td>
+<td style="text-align:left">&#124;</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">logical and</td>
+<td style="text-align:left">&amp;&amp;</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">logical or</td>
+<td style="text-align:left">&#124;&#124;</td>
+<td style="text-align:left">left to right</td>
+</tr>
+<tr>
+<td style="text-align:left">conditional</td>
+<td style="text-align:left">? :</td>
+<td style="text-align:left">right to left</td>
+</tr>
+<tr>
+<td style="text-align:left">assignment</td>
+<td style="text-align:left">= += -= *= /= %= &amp;= ^= &#124;= &lt;&lt;=&gt;&gt;= &gt;&gt;&gt;=</td>
+<td style="text-align:left">right to left</td>
+</tr>
+<tr>
+<td style="text-align:left">seperator</td>
+<td style="text-align:left">,</td>
+<td style="text-align:left">left to right</td>
+</tr>
+</tbody>
+</table>
+<h2 id="流程控制敘述"><a href="#流程控制敘述" class="headerlink" title="流程控制敘述"></a>流程控制敘述</h2><p>Java 的流程控制敘述和 C 語言極為類似, 不同處在於 <code>break</code> 和 <code>continue</code> 兩個指令。Java 的 <code>break</code> 和 <code>continue</code> 指令後面可以加上標籤, 以指示要跳出或繼續的範圍。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BreakContinueExample</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i, j;</span><br><span class="line">        outerLoop:</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            innerLoop:</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">100</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">50</span> &amp;&amp; i == <span class="number">50</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span> outerLoop;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Loop have been terminated."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中, 當 <code>j == 50</code> 且 <code>i == 50</code> 時，<code>break</code> 指令會跳出最外面的迴圈，直接印出迴圈終止訊息。如果 <code>break</code> 後面沒有 <code>outerLoop</code> 的話，只會跳出裡面的迴圈，然後 <code>i</code> 從 <code>51</code> 繼續做下去。</p>
+<h2 id="字串"><a href="#字串" class="headerlink" title="字串"></a>字串</h2><p>C 語言定義以 0 結尾的字元陣列就是字串。但對 Java 來說，字串是由 String 類別來表達，也就是說 String 是物件而不是陣列。由於我們經常使用字串，為了寫作程式方便起見，Java Compiler 碰到 <code>+</code> 符號某一邊的型態是 String 時，就會把 <code>+</code> 翻譯成 StringBuffer 類別裡相對應的 append Method。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">float</span> y = <span class="number">1.5</span>;</span><br><span class="line">        System.out.println(<span class="string">"x = "</span> + x + <span class="string">", y = "</span> + y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>會翻譯成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">float</span> y = <span class="number">1.5</span>;</span><br><span class="line">        System.out.println((<span class="keyword">new</span> StringBuffer(<span class="string">"x = "</span>)).append(x).append(<span class="string">", y = "</span>).append(y).toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你會 C++，看到 Java 字串 <code>+</code> 符號的語法，千萬不要以為 Java 支援 operator overloading。Java 只是透過 Compiler 來做特別的轉換，稱這種技術為 Compiler Sugar 比較適合。</p>
+<h2 id="Java-語言的寫作風格"><a href="#Java-語言的寫作風格" class="headerlink" title="Java 語言的寫作風格"></a>Java 語言的寫作風格</h2><p>寫作 Java 程式時，請注意下列幾種風格</p>
+<ul>
+<li>Class Name 請首字大寫</li>
+<li>Variable Name 和 Method Name 請首字小寫</li>
+<li>如果名稱由數個英文字組成，第二個英文字以後首字大寫</li>
+<li>內縮四個空格</li>
+<li>註解部分如要變成說明文件，請遵照 javadoc 這個工具的寫作規則</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 第一行的兩個**用來告訴javadoc此部份註解要變成HTML文件的一部份</span></span><br><span class="line"><span class="comment"> * 這段註解裡的所有文字都會變成此類別一開頭的說明</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123; <span class="comment">// Class Name首字大寫</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 此段註解會變成描述main方法的一部分</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> argv 使用<span class="doctag">@param</span>註記會產生參數(parameter)argv的相關說明</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 傳回值的意義說明</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123; <span class="comment">// Method Name首字小寫</span></span><br><span class="line">        <span class="comment">// argv: array of references to String object</span></span><br><span class="line">        <span class="keyword">int</span> myVariable; <span class="comment">// 變數宣告</span></span><br><span class="line">        <span class="keyword">int</span> i, sum;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>, sum = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"summation from 1 to 100 is "</span>+sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="運算符號範例"><a href="#運算符號範例" class="headerlink" title="運算符號範例"></a>運算符號範例</h2><h3 id="攝氏溫度轉華氏溫度"><a href="#攝氏溫度轉華氏溫度" class="headerlink" title="攝氏溫度轉華氏溫度"></a>攝氏溫度轉華氏溫度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">float</span> degree = <span class="number">100.0</span>;</span><br><span class="line">        System.out.println(<span class="string">"100C="</span> + (degree * <span class="number">9.0</span> / <span class="number">5.0</span> + <span class="number">32.0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="華氏溫度轉攝氏溫度"><a href="#華氏溫度轉攝氏溫度" class="headerlink" title="華氏溫度轉攝氏溫度"></a>華氏溫度轉攝氏溫度</h3><p>怎麼寫呢?</p>
+<h3 id="1-2-n-的總合"><a href="#1-2-n-的總合" class="headerlink" title="1 + 2 + ... + n 的總合"></a><code>1 + 2 + ... + n</code> 的總合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">100</span>;</span><br><span class="line">        System.out.println(<span class="string">"1+2+...+"</span>+n+<span class="string">"  = "</span> + ( n * (n + <span class="number">1</span>) / <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>特別注意上述的運算式裡 <code>/2</code> 要放到最後面，如果寫成 <code>n/2*(n+1)</code>，從數學式子的角度看好像沒問題，但別忘了，binary operator 的兩邊必須是同樣型別的資料，而且計算的結果也是同樣的型別。因此 <code>n/2*(n+1)</code> 會先計算 <code>n/2</code>，如果 <code>n</code> 不能被 <code>2</code> 整除的話，那麼為了符合計算結果必須是整數的限制，則小數點的部份就會無條件捨去，使得計算的結果錯誤。下面的範例一樣要注意相同的問題。</p>
+<h3 id="12-22-…-n2-的總和"><a href="#12-22-…-n2-的總和" class="headerlink" title="12 + 22 + … + n2 的總和"></a>1<sup>2</sup> + 2<sup>2</sup> + … + n<sup>2</sup> 的總和</h3><p>怎麼寫?</p>
+<h3 id="把浮點數四捨五入為整數"><a href="#把浮點數四捨五入為整數" class="headerlink" title="把浮點數四捨五入為整數"></a>把浮點數四捨五入為整數</h3><p>Java 語言規定浮點數轉整數時，小數點部分無條件捨去。如果要達到浮點數四捨五入為整數的效果，可以使用下面的小技巧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> x = <span class="number">20.6</span>;</span><br><span class="line">        System.out.println(x + <span class="string">" 四捨五入成為 "</span> + (<span class="keyword">int</span>)(x+<span class="number">0.5</span>));</span><br><span class="line">        System.out.println(x + <span class="string">" 四捨五入成為 "</span> + round(x));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">round</span><span class="params">(<span class="keyword">double</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)(y + <span class="number">0.5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="迴圈範例"><a href="#迴圈範例" class="headerlink" title="迴圈範例"></a>迴圈範例</h2><h3 id="寫一程式輸入-5-個整數數字，計算其總合和平均。解析："><a href="#寫一程式輸入-5-個整數數字，計算其總合和平均。解析：" class="headerlink" title="寫一程式輸入 5 個整數數字，計算其總合和平均。解析："></a>寫一程式輸入 5 個整數數字，計算其總合和平均。解析：</h3><ol>
+<li>需要 1 個變數紀錄到目前為止所有 <code>inputNum</code> 的總和，稱此變數為 <code>sum</code>，其初始值為 <code>0</code></li>
+<li>以迴圈執行 5 次，每次輸入數字加總到 <code>sum</code>，迴圈執行的次數以變數 <code>i</code> 來代表</li>
+<li>平均數為 <code>sum/5</code></li>
+<li>如何讀入資料?</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>, i = <span class="number">0</span>;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (i &lt; <span class="number">5</span> &amp;&amp; in.hasNextInt()) &#123;</span><br><span class="line">            sum = sum + in.nextInt();</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"sum is "</span>+sum<span class="string">", average is "</span>+(sum/<span class="number">5.0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="寫一函數輸入參數-int-n-傳回-1-2-3-n-的總合。解析："><a href="#寫一函數輸入參數-int-n-傳回-1-2-3-n-的總合。解析：" class="headerlink" title="寫一函數輸入參數 int n, 傳回 1 + 2 + 3 ... + n 的總合。解析："></a>寫一函數輸入參數 <code>int n</code>, 傳回 <code>1 + 2 + 3 ... + n</code> 的總合。解析：</h3><ol>
+<li>要想辦法拜訪 <code>1, 2, 3, ..., n</code> 的每一個數字一次</li>
+<li>可用 <code>for (i = 1; i &lt;= n; i++)</code> 的形式達成上述目標</li>
+<li>拜訪到這些數字時，就把它們加起來</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 紀錄到目前為止的總和</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            total += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> total;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(sum(<span class="number">100</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="寫一函數輸入參數-int-n-傳回-1-3-5-n-的總合。解析："><a href="#寫一函數輸入參數-int-n-傳回-1-3-5-n-的總合。解析：" class="headerlink" title="寫一函數輸入參數 int n, 傳回 1 + 3 + 5 ... + n 的總合。解析："></a>寫一函數輸入參數 <code>int n</code>, 傳回 <code>1 + 3 + 5 ... + n</code> 的總合。解析：</h3><ol>
+<li>要想辦法拜訪 <code>1, 3, 5, ..., n</code> 的每一個數字一次，也就是從 1 開始每次加 2</li>
+<li>可用 <code>for (i = 1; i &lt;= n; i += 2)</code> 的形式達成上述目標</li>
+<li>拜訪到這些數字時，就把它們加起來</li>
+</ol>
+<p>怎麼寫?</p>
+<h3 id="寫一函數於螢幕上畫出九九乘法表。解析："><a href="#寫一函數於螢幕上畫出九九乘法表。解析：" class="headerlink" title="寫一函數於螢幕上畫出九九乘法表。解析："></a>寫一函數於螢幕上畫出九九乘法表。解析：</h3><ol>
+<li>總共有 <code>i = 1..9</code> 列，<code>j = 1..9</code> 行，對第 <code>i</code> 列第 <code>j</code> 行元素來說，其數值為 <code>i*j</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">9</span>; j++) &#123;</span><br><span class="line">                System.out.print(<span class="string">" "</span> + (i * j));</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="輸入參數-int-size，並在螢幕上印出正方形，size-3-的樣子如下"><a href="#輸入參數-int-size，並在螢幕上印出正方形，size-3-的樣子如下" class="headerlink" title="輸入參數 int size，並在螢幕上印出正方形，size = 3 的樣子如下"></a>輸入參數 <code>int size</code>，並在螢幕上印出正方形，<code>size = 3</code> 的樣子如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">***</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>螢幕上的游標只能由上而下，由左而右，無法回頭。</li>
+<li>此圖形共有 <code>1 .. size</code> 列，每列有 <code>size</code> 個 <code>*</code>，因此可用兩層迴圈來做。</li>
+<li>要讓一個敘述執行 <code>size</code> 次，可用 <code>for ( i = 1; i &lt;= size; i++ )</code> 的形式來達成</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i, j; <span class="comment">// 第i列,第j行</span></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= size; i++) &#123; <span class="comment">// 印出第i列</span></span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= size; j++) &#123; <span class="comment">// 第i列有size個*</span></span><br><span class="line">                System.out.print(<span class="string">"*"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        print(Integer.parseInt(in.readLine()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="輸入參數-int-size，並在螢幕上印出直角三角形，size-3-的樣子如下"><a href="#輸入參數-int-size，並在螢幕上印出直角三角形，size-3-的樣子如下" class="headerlink" title="輸入參數 int size，並在螢幕上印出直角三角形，size = 3 的樣子如下"></a>輸入參數 <code>int size</code>，並在螢幕上印出直角三角形，<code>size = 3</code> 的樣子如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line">**</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>螢幕上的游標只能由上而下，由左而右，無法回頭。</li>
+<li>此圖形共有 <code>1 .. size</code> 列，第 <code>i</code> 列有個 <code>*</code>，因此可用兩層迴圈來做。</li>
+</ol>
+<p>怎麼寫?</p>
+<h3 id="撰寫一函數輸入-int-size，並在螢幕上印出等腰的三角形，size-3-的樣子如下"><a href="#撰寫一函數輸入-int-size，並在螢幕上印出等腰的三角形，size-3-的樣子如下" class="headerlink" title="撰寫一函數輸入 int size，並在螢幕上印出等腰的三角形，size = 3 的樣子如下"></a>撰寫一函數輸入 <code>int size</code>，並在螢幕上印出等腰的三角形，<code>size = 3</code> 的樣子如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  *</span><br><span class="line"> ***</span><br><span class="line">*****</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<ol>
+<li>總共有 <code>1 .. size</code> 列，對第 <code>i</code> 列而言，有 <code>size - i</code> 個空格，以及 <code>(2 * i- 1)</code> 個 <code>*</code></li>
+</ol>
+<p>怎麼寫?</p>
+<h3 id="寫一函數求兩個整數的最大公因數，解析："><a href="#寫一函數求兩個整數的最大公因數，解析：" class="headerlink" title="寫一函數求兩個整數的最大公因數，解析："></a>寫一函數求兩個整數的最大公因數，解析：</h3><ol>
+<li>此函數需要兩個參數 <code>x</code>, <code>y</code></li>
+<li>當 <code>y</code> 不能整除 <code>x</code> 時，將 <code>x</code> 設成為 <code>y</code>，<code>y</code> 設為 <code>x % y</code>，重複此步驟直到 <code>x % y</code> 為 <code>0</code></li>
+<li>此時 <code>y</code> 就是這兩個數的最大公因數</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(gcd(<span class="number">12</span>,<span class="number">18</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp;</span><br><span class="line">        <span class="comment">// 如果x &lt; y 則下面的迴圈執行第一次時就會交換x,y了</span></span><br><span class="line">        <span class="keyword">while</span> (x % y != <span class="number">0</span>) &#123;</span><br><span class="line">            tmp = y;</span><br><span class="line">            y = x % y;</span><br><span class="line">            x = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="寫一函數求兩個整數的最小公倍數"><a href="#寫一函數求兩個整數的最小公倍數" class="headerlink" title="寫一函數求兩個整數的最小公倍數"></a>寫一函數求兩個整數的最小公倍數</h3><p>怎麼寫?</p>
+<p>寫一函數求費氏數，解析：</p>
+<ol>
+<li><code>F(n) = n</code>, <code>if n &lt;= 1;</code></li>
+<li><code>F(n) = F(n-1) + F(n-2)</code>, otherwise</li>
+<li>可定義兩變數 <code>fn_1</code>, <code>fn_2</code> 表示最近兩個找出的費氏數</li>
+<li>下一個費氏數依定義為 <code>fn_1 + fn_2</code></li>
+<li>找到最新的費氏數後, 最近的兩個費氏數就變成了 <code>fn_1 + fn_2</code> 以及 <code>fn_1</code></li>
+<li>以變數 <code>i</code> 紀錄目前要求的是哪一個費氏數</li>
+<li>以變數 <code>tmp</code> 作為更新最新兩個費氏數所需的記憶體空間</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(fab(<span class="number">5</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fab</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> fn_1 = <span class="number">1</span>, fn_2 = <span class="number">0</span>; <span class="comment">// 紀錄最近找到的兩個費氏數</span></span><br><span class="line">        <span class="keyword">int</span> i, tmp; <span class="comment">// i表示目前要找F(i)</span></span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            tmp = fn_1;   <span class="comment">// 先把fn_1紀錄在tmp</span></span><br><span class="line">            fn_1 += fn_2; <span class="comment">// 最新的費氏數是前面兩個相加</span></span><br><span class="line">            fn_2 = tmp;   <span class="comment">// 第二新的就是原先的fn_1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fn_1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遞迴-recursion-範例"><a href="#遞迴-recursion-範例" class="headerlink" title="遞迴 (recursion) 範例"></a>遞迴 (recursion) 範例</h2><p>求 <code>1 + 2 + 3 + ... + n</code></p>
+<p>解析</p>
+<ul>
+<li>邊際條件是 <code>n = 1</code> 時，總合為 <code>1</code></li>
+<li>該函數可定成 <code>int sum(int n)</code></li>
+<li><code>sum(n) = n + sum(n - 1)</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(sum(<span class="number">100</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n + sum(n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="以遞迴計算-1-2-2-3-3-4-n-1-n-之和"><a href="#以遞迴計算-1-2-2-3-3-4-n-1-n-之和" class="headerlink" title="以遞迴計算 1 * 2 + 2 * 3 + 3 * 4 + ... + (n-1) * n 之和"></a>以遞迴計算 <code>1 * 2 + 2 * 3 + 3 * 4 + ... + (n-1) * n</code> 之和</h3><p>怎麼寫?</p>
+<h3 id="利用遞迴求得-A-的-B-次方"><a href="#利用遞迴求得-A-的-B-次方" class="headerlink" title="利用遞迴求得 A 的 B 次方"></a>利用遞迴求得 <code>A</code> 的 <code>B</code> 次方</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(power(<span class="number">2</span>, <span class="number">6</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">power</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span>(b) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> a;</span><br><span class="line">        <span class="keyword">default</span>: <span class="keyword">return</span> (a * power(a, b - <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="以遞迴求兩個整數-m-n-的最大公因數"><a href="#以遞迴求兩個整數-m-n-的最大公因數" class="headerlink" title="以遞迴求兩個整數 m, n 的最大公因數"></a>以遞迴求兩個整數 <code>m</code>, <code>n</code> 的最大公因數</h3><p>解析</p>
+<ul>
+<li>如果 <code>n == 0</code>，則最大公因數為 <code>m</code></li>
+<li>如果 <code>n</code> 不等於 <code>0</code>，則最大公因數為 <code>gcd(m, n) == gcd(n, m%n)</code></li>
+</ul>
+<p>怎麼寫?</p>
+<h3 id="費式數列"><a href="#費式數列" class="headerlink" title="費式數列"></a>費式數列</h3><p>解析</p>
+<ul>
+<li>費氏數列的定義為 <code>F(n) = n</code>, <code>if n &lt;= 1</code></li>
+<li><code>F(n) = F(n-1) + F(n-2), if n &gt; 1</code>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        System.out.println(fab(<span class="number">5</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fab</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fab(num - <span class="number">1</span>) + fab(num - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Ackerman-函數"><a href="#Ackerman-函數" class="headerlink" title="Ackerman 函數"></a>Ackerman 函數</h3><p><code>A(m, n)</code> 定義為</p>
+<ol>
+<li><code>n + 1, if m = 0</code></li>
+<li><code>A(m - 1, 1), if n = 0</code></li>
+<li><code>A(m - 1, A(m, n - 1))</code>, otherwise</li>
+</ol>
+<p>怎麼寫?</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 | 程式寫作概論 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"title":"程式寫作概論","path":"c/writing-intro.html"},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1>程式寫作概論</h1>
+        <h2 id="文章的組成"><a href="#文章的組成" class="headerlink" title="文章的組成"></a>文章的組成</h2><h3 id="書的結構"><a href="#書的結構" class="headerlink" title="書的結構"></a>書的結構</h3><ul>
+<li>書名</li>
+<li>作者</li>
+<li>目錄</li>
+<li>章<ul>
+<li>標題</li>
+<li>節<ul>
+<li>段落<ul>
+<li>句子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>附錄</li>
+<li>索引</li>
+</ul>
+<h3 id="學術論文的結構"><a href="#學術論文的結構" class="headerlink" title="學術論文的結構"></a>學術論文的結構</h3><ul>
+<li>標題</li>
+<li>作者</li>
+<li>摘要</li>
+<li>節<ul>
+<li>段落<ul>
+<li>句子</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引用文獻</li>
+</ul>
+<h2 id="句子的組成"><a href="#句子的組成" class="headerlink" title="句子的組成"></a>句子的組成</h2><ul>
+<li>單字</li>
+<li>文法: 主詞 + 動詞 + 受詞</li>
+</ul>
+<h2 id="程式語言"><a href="#程式語言" class="headerlink" title="程式語言"></a>程式語言</h2><h3 id="C語言的結構"><a href="#C語言的結構" class="headerlink" title="C語言的結構"></a>C語言的結構</h3><ul>
+<li>註解 (comments)(給人看的)</li>
+<li>函數 (functions)<ul>
+<li>函數名稱 (function name)</li>
+<li>參數 (parameters)</li>
+<li>區域變數宣告 (local variable declarations)</li>
+<li>敘述 (statements)</li>
+</ul>
+</li>
+</ul>
+<h3 id="敘述的組成"><a href="#敘述的組成" class="headerlink" title="敘述的組成"></a>敘述的組成</h3><ul>
+<li>常數、變數、運算符號、分號</li>
+<li><code>if () {} else {}</code></li>
+<li><code>while () {}</code></li>
+<li><code>do {} while {}</code></li>
+<li><code>switch () { case 1: case 2: case 3}</code></li>
+<li><code>break</code></li>
+<li><code>continue</code></li>
+<li><code>goto</code></li>
+</ul>
+<h3 id="Java-語言的結構"><a href="#Java-語言的結構" class="headerlink" title="Java 語言的結構"></a>Java 語言的結構</h3><ul>
+<li>註解 (comments)(給人看的)</li>
+<li>類別 (class)<ul>
+<li>變數宣告 (variable declarations)</li>
+<li>函數宣告 (method declarations)<ul>
+<li>函數名稱 (function name)</li>
+<li>參數 (parameters)</li>
+<li>區域變數宣告 (local variable declarations)</li>
+<li>敘述 (statements)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h2><p>文字描述如何判斷閏年 透過西元幾年來判斷閏年：4 的倍數的年份是閏年，100 的倍數的年份是平年，400 的倍數的年份是閏年，也就是說，400 年中，只有 97 個閏年 (4 的倍數有 100 個，100 的倍數有 4 個，400 的倍數有 1 個)。</p>
+<p>以流程圖 (Flow Chart) 來表示</p>
+<div id="flowchart-0" class="flow-chart"></div>
+
+
+<p>以程式來表示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Please input an the year:"</span>); <span class="comment">// 提示使用者輸入資料</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;year) != <span class="number">1</span>) &#123; <span class="comment">// 輸入年份year</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"輸入錯誤\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (year%<span class="number">4</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (year%<span class="number">100</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (year%<span class="number">400</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d是閏年\n"</span>, year);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%d不是閏年\n"</span>, year);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d是閏年\n"</span>, year);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d不是閏年\n"</span>, year);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我們把所有可得到閏年的路徑，集合在一起，則更簡潔的寫法是</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Please input the year:"</span>); <span class="comment">// 提示使用者輸入資料</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;year) != <span class="number">1</span>) &#123; <span class="comment">// 輸入年份year</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"輸入錯誤\n"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span> (year%<span class="number">400</span> == <span class="number">0</span> || year%<span class="number">4</span> == <span class="number">0</span> &amp;&amp; year%<span class="number">100</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d是閏年\n"</span>, year);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d不是閏年\n"</span>, year);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java的範例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Leap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> year = <span class="number">1984</span>;</span><br><span class="line">        System.out.println(<span class="string">"Please input the year:"</span>);</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">if</span> (!in.hasNextInt()) &#123;</span><br><span class="line">            System.out.println(<span class="string">"輸入錯誤"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        year = in.nextInt();</span><br><span class="line">        <span class="keyword">if</span> (year%<span class="number">400</span> == <span class="number">0</span> || year%<span class="number">4</span> == <span class="number">0</span> &amp;&amp; year%<span class="number">100</span> != <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(year+<span class="string">"是閏年"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(year+<span class="string">"不是閏年"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">mod4=>condition: year % 4 == 0
+mod100=>condition: year % 100 == 0
+mod400=>condition: year % 400 == 0
+no4=>operation: 不是閏年
+yes100=>operation: 閏年
+no400=>operation: 不是閏年
+yes400=>operation: 閏年
+
+mod4(no, right)->no4
+mod4(yes)->mod100
+mod100(no, right)->yes100
+mod100(yes)->mod400
+mod400(no, right)->no400
+mod400(yes)->yes400</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>

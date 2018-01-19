@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+
+    <title>SSYU 的書們 |  </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </head>
+  <body>
+
+   <!-- hexo-inject:begin --><!-- hexo-inject:end --><script>window.__INITIAL_STATE__ = {"page":{"path":"java/examples/eight-queens-puzzle.html","title":""},"data":{"navigation":{"logo":{"text":"Programming Yu","type":"link","path":"index.html"},"main":[{"text":"C 程式語言教學","type":"label","children":[{"text":"程式寫作概論","type":"link","path":"c/writing-intro.html"},{"text":"電腦系統概論","type":"link","path":"c/system-intro.html"},{"text":"電腦內部運作","type":"link","path":"c/system-operation.html"},{"text":"C 語言的總覽","type":"link","path":"c/c-intro.html"}]},{"text":"C 程式語言範例","type":"label","children":[{}]},{"text":"Java 程式語言教學","type":"label","children":[{"text":"Java 與 C 的比較","type":"link","path":"java/java-vs-c.html"},{"text":"類別與物件","type":"link","path":"java/class-and-obj.html"},{"text":"陣列","type":"link","path":"java/array.html"},{"text":"封裝","type":"link","path":"java/encapsulation.html"},{"text":"訊息傳遞","type":"link","path":"java/message-passing.html"},{"text":"繼承","type":"link","path":"java/extends.html"},{"text":"介面","type":"link","path":"java/interface.html"},{"text":"例外處理","type":"link","path":"java/exception.html"},{"text":"線串與同步處理","type":"link","path":"java/thread.html"},{"text":"容器類別","type":"link","path":"java/container.html"},{"text":"GUI","type":"link","path":"java/gui.html"},{"text":"IO","type":"link","path":"java/io.html"},{"text":"NET","type":"link","path":"java/net.html"},{"text":"JDBC","type":"link","path":"java/jdbc.html"},{"text":"印表","type":"link","path":"java/easy-print.html"}]},{"text":"Java 程式語言範例","type":"label","children":[{"text":"所得稅計算","type":"link","path":"java/examples/tax-calculate.html"}]},{"text":"資料結構與演算法","type":"label"}]},"posts":[{"text":"The 3n + 1 problem","type":"link","path":"questions/The-3n-1-problem/","date":"2017-12-21T19:53:25+00:00"}]},"config":{"timezone":"Asia/Taipei","root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Programming Yu</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1></h1>
+        <p>在程式語言教學中，訓練學習者分析問題的能力相當重要。  </p>
+<p>很多有趣的範例程式來自數學家的研究，以八皇后為例，Franz Nauck在1850年提出「在西洋棋的棋盤上放八個皇后，使得沒有一個王后能吃掉其他皇后」。  </p>
+<p>西洋棋的皇后如同象棋的車，可以縱、橫、斜向移動，把 8 個皇后排在 8 乘以 8 的棋盤上，卻不使彼此攻伐的排法有幾種？數學家高斯猜測有 96 個解，實際上只有 92 個形式解，本質解有 12 個。  </p>
+<p>本質解是無法經由某一個解旋轉或反射得到的解。</p>
+<p>八皇后問題可以擴展成 N 皇后，藉由程式語言的幫助將易於求解。  </p>
+<p>在教學上為了方便解說，以四皇后說明此類問題的核心想法。  </p>
+<p>使用四維向量 (a,b,c,d) 表示四皇后在 4 乘以 4 棋盤上的放法，圖一的擺法表示成 (2,4,1,3)。  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="https://github.com/NCNU-CALab/java.programming.im/raw/master/example/pic/9-1.gif" alt="圖一" title="圖一"></th>
+<th style="text-align:center"><img src="https://github.com/NCNU-CALab/java.programming.im/raw/master/example/pic/9-2.gif" alt="圖二" title="圖二"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">圖一</td>
+<td style="text-align:center">圖二</td>
+</tr>
+</tbody>
+</table>
+<p>假使如圖二，已排好三個皇后，對應的向量為 (1,4,2,X)，第四個分量 X 是未確定的第四個皇后位置。  </p>
+<p>N 皇后求解的條件是：沒有任兩個皇后在同一行、同一列、同一對角線上。  </p>
+<p>圖二的 (1,4,2,X) 不管怎麼放，都不可能符合上開條件。  </p>
+<p>下列樹狀圖每個節點表示棋盤上放皇后的一種情形，詳細說明所有可能的排法。  </p>
+<p><img src="https://github.com/NCNU-CALab/java.programming.im/raw/master/example/pic/9-3.gif" alt="圖三">  </p>
+<p>由樹狀圖看來，找出四皇后問題的解，最好的辦法是檢查所有的狀況一次，此次有 4<sup>4</sup> = 256 個可能解，不僅耗費時間，問題擴大時也難以負荷。  </p>
+<p>改用一個比較可行的方法來處理，首先，依次序先檢查 (1,X,X,X)，再往下層檢查 (1,1,X,X)。  </p>
+<p>因為 (1,1,X,X) 表示前兩個皇后都位於第一行上，違反條件。所以 (1,1,X,X) 以下的子樹的樹枝就都不必再逐一的搜索了。  </p>
+<p>這時，應退回到上一級的頂點 (1,X,X,X) 處，以下一個頂點 (1,2,X,X) 開始。  </p>
+<p>可以發現 (1,2,X,X) 這個頂點也違反了條件，因為同一對角線上。於是再返回(1,X,X,X)。  </p>
+<p>現在利用圖四至圖七，以此方法繼續做下去：  </p>
+<p><img src="https://github.com/NCNU-CALab/java.programming.im/raw/master/example/pic/9-4.gif" alt="圖四至圖七" title="圖四至圖七">  </p>
+<p>圖四，表示第一個皇后放在第一行，第二個皇后就不能放在第一列也不能放在第二列，只能以第三列開始搜尋；  </p>
+<p>圖五，表示以 (1,3,X,X) 為樹根的子樹都不是問題的解，因為第三個皇后無論怎麼放，都違反條件；  </p>
+<p>圖六，表示 (1,4,1,X) 違反條件，而 (1,4,2,X) 仍能符合條件；  </p>
+<p>圖七，表示 (1,4,2,X) 在考慮第四個皇后位置，就被否決了。</p>
+<p>按上述方式做下去，可得到一個結論：四皇后問題共有兩個解，如圖八中的 (2,4,1,3) 和圖九 (3,1,4,2)。  </p>
+<p>讓我們審視 (2,4,1,3) 和 (3,1,4,2) 這兩個解，發現它們是互相對稱的，本質上是同一個解。  </p>
+<p>在這裡，我們得到了數學上形式解和本質解的觀念。  </p>
+<p>以上是 N 皇后問題的解說，以程式語言求解的範例如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Program Name: Queen.java</span></span><br><span class="line"><span class="comment"> * Purpose: 找N皇后問題有幾組解</span></span><br><span class="line"><span class="comment"> * Author: Shiuh-Sheng Yu</span></span><br><span class="line"><span class="comment"> * Date: 2003/05/20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Queen</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] board, directions;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size, numSolutions;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> QUEEN = <span class="number">0x01000000</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] argv)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size, c;</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">            System.out.print(<span class="string">"Please input the Queen size: "</span>);</span><br><span class="line">            <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    c = System.in.read();</span><br><span class="line">                    <span class="keyword">if</span> (!(c&gt;=<span class="string">'0'</span> &amp;&amp; c&lt;=<span class="string">'9'</span>)) &#123;</span><br><span class="line">                         <span class="keyword">if</span> (sb.length()&gt;<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">                         <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span>(IOException ex) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                sb.append((<span class="keyword">char</span>)c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                size = Integer.parseInt(sb.toString());</span><br><span class="line">            &#125; <span class="keyword">catch</span>(NumberFormatException ex) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (size==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            Queen x = <span class="keyword">new</span> Queen(size);</span><br><span class="line">            x.arrange();</span><br><span class="line">            System.out.println(<span class="string">"The "</span>+size+<span class="string">" Queen has "</span>+x.getSolutionNum()+<span class="string">" solutions"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Queen</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">        directions = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">        directions[<span class="number">0</span>] = size+<span class="number">1</span>; </span><br><span class="line">        directions[<span class="number">1</span>] = size+<span class="number">2</span>; </span><br><span class="line">        directions[<span class="number">2</span>] = size+<span class="number">3</span>;</span><br><span class="line">        board = <span class="keyword">new</span> <span class="keyword">int</span>[(size+<span class="number">2</span>)*(size+<span class="number">2</span>)];</span><br><span class="line">        <span class="keyword">int</span> lastLine = (size+<span class="number">2</span>)*(size+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 設定盤面上的哨兵</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; size+<span class="number">2</span>; i++) &#123; <span class="comment">// 上下兩排</span></span><br><span class="line">            board[i] = -<span class="number">1</span>;</span><br><span class="line">            board[lastLine+i] = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=size; i++) &#123; <span class="comment">// 左右兩排</span></span><br><span class="line">            board[i*(size+<span class="number">2</span>)] = -<span class="number">1</span>;</span><br><span class="line">            board[i*(size+<span class="number">2</span>)+size+<span class="number">1</span>] = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSolutionNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numSolutions;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">arrange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        arrange(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 嘗試放到第row列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">arrange</span><span class="params">(<span class="keyword">int</span> row)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i &lt;= size; i++) &#123; <span class="comment">// 檢查此列上的每一行</span></span><br><span class="line">            <span class="keyword">int</span> puton = (size+<span class="number">2</span>)*row+i;</span><br><span class="line">            <span class="keyword">if</span> (board[puton] == <span class="number">0</span>) &#123; <span class="comment">// 不在任何皇后範圍內</span></span><br><span class="line">                <span class="keyword">if</span> (row==size) &#123; <span class="comment">// 已經到最後一個row, 此為一種解</span></span><br><span class="line">                    numSolutions++;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    board[puton] = QUEEN; <span class="comment">// 放上皇后</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++) &#123; <span class="comment">// 設定此皇后的勢力範圍</span></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> k=puton+directions[j]; board[k]&gt;=<span class="number">0</span>; k+=directions[j]) &#123;</span><br><span class="line">                            board[k]++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    arrange(row+<span class="number">1</span>);</span><br><span class="line">                    board[puton] = <span class="number">0</span>; <span class="comment">// 移除皇后</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++) &#123; <span class="comment">// 移除此皇后的勢力範圍</span></span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> k=puton+directions[j]; board[k]&gt;=<span class="number">0</span>; k+=directions[j]) &#123; </span><br><span class="line">                            board[k]--;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  </body>
+</html>
