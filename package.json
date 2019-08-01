@@ -9,7 +9,7 @@
     "version": "3.4.3"
   },
   "dependencies": {
-    "hexo": "^3.2.0",
+    "hexo": "^3.9.0",
     "hexo-filter-flowchart": "^1.0.4",
     "hexo-filter-sequence": "^1.0.3",
     "hexo-generator-category": "^0.1.3",
